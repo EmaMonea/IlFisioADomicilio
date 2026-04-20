@@ -1,0 +1,186 @@
+---
+// src/components/Zones.astro
+const zones = [
+  'Corsico', 'San Siro', 'Baggio', 'Cesano Boscone',
+  'Buccinasco', 'Trezzano sul Naviglio', 'Settimo Milanese',
+  'Rho', 'Pero', 'Cornaredo', 'Bareggio', 'Vittuone',
+];
+---
+
+<section class="section" aria-labelledby="zones-heading">
+  <div class="container">
+
+    <header class="section-header">
+      <p class="section-label">zone</p>
+      <h2 class="section-title">Dove opero</h2>
+      <p class="section-subtitle">Opero a domicilio nell'ovest milanese. Se la tua zona non compare, contattami — è probabile che riesca a raggiungerti.</p>
+    </header>
+
+    <div class="zones-content">
+      <p class="zones-label">Tra le zone servite</p>
+      <ul class="zones-list" role="list">
+        {zones.map((zone, i) => (
+          <li class="zone-chip" style={`--delay: ${i * 0.04}s`}>{zone}</li>
+        ))}
+      </ul>
+      <a class="zones-link" href="/zone">
+        Tutte le zone e i comuni
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .zones {
+    padding: 80px 0; 
+  }
+
+  .zones-container {
+    max-width:1200px; 
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  /* ── Header ── */
+  .zones-header {
+    margin-bottom: 36px;
+  }
+
+  .zones-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    line-height: 1.3;
+    color: var(--neutral-900);
+    margin-bottom: 12px;
+  }
+
+  .zones-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--neutral-700);
+    max-width: 560px;
+  }
+
+  /* ── Contenuto ── */
+  .zones-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neutral-800);
+    margin-bottom: 16px;
+  }
+
+  /* ── Lista chip ── */
+  .zones-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+  }
+
+  .zone-chip {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--neutral-800);
+    background: var(--white);
+    border: 1px solid var(--secondary-200);
+    padding: 10px 20px;
+    border-radius: 999px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .zone-chip:hover {
+    background: var(--primary-50);
+    border-color: var(--primary-300);
+    color: var(--primary-800);
+  }
+
+  /* ── Link ── */
+  .zones-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-800);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .zones-link:hover {
+    gap: 10px;
+  }
+
+  .zones-link:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* ── Scroll animation ── */
+  .zones-content {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .zones-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .zones { padding: 64px 0; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .zones { padding: 48px 0; }
+    .zones-header { margin-bottom: 28px; }
+    .zone-chip { padding: 10px 16px; }
+  }
+
+  /* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .zones-content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .zone-chip { transition: none; }
+    .zones-link { transition: none; }
+  }
+
+  @media (hover: none) {
+    .zone-chip:hover {
+      background: var(--white);
+      border-color: var(--secondary-200);
+      color: var(--neutral-800);
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  document.querySelectorAll('.zones-content').forEach(el => observer.observe(el));
+</script>

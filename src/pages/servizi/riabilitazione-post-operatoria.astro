@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/base.astro'
+import Head from '../../components/Head.astro'
+
+import ContactForm from '../../components/ContactForm.astro'
+import Hero from '../../components/Hero.astro'
+import ArticleSection from '../../components/ArticleSection.astro'
+
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="Riabilitazione post-operatoria">
+    <Hero 
+        index={false}
+        title="Riabilitazione post-operatoria"
+        subtitle="Dopo un intervento chirurgico, il recupero va iniziato il prima possibile sempre nel rispetto delle indicazioni ortopediche."
+        breadcrumb='Riabilitazione post operatoria'
+    />
+    <article class="article">
+        <ArticleSection title="La situazione">
+            <p>
+            Sei stato operato — protesi d'anca, protesi di ginocchio, artroscopia, ricostruzione 
+            del crociato — e sei tornato a casa. L'ortopedico ti ha detto di iniziare la fisioterapia,
+            ma muoverti per raggiungere uno studio è complicato, soprattutto nelle prime settimane. 
+            Magari hai le stampelle, fai fatica a salire in macchina, oppure vivi da solo e non hai chi ti accompagna.
+            È una situazione molto comune. Ed è esattamente il motivo per cui la riabilitazione a domicilio esiste: 
+            il recupero inizia prima, nel tuo ambiente, senza dipendere da nessuno per gli spostamenti.
+            </p>
+        </ArticleSection>
+        <ArticleSection title="Il percorso">
+            <p>
+            Sei stato operato — protesi d'anca, protesi di ginocchio, artroscopia, ricostruzione 
+            del crociato — e sei tornato a casa.<br> L'ortopedico ti ha detto di iniziare la fisioterapia,
+            ma muoverti per raggiungere uno studio è complicato, soprattutto nelle prime settimane. 
+            Magari hai le stampelle, fai fatica a salire in macchina, oppure vivi da solo e non hai chi ti accompagna.
+            È una situazione molto comune. Ed è esattamente il motivo per cui la riabilitazione a domicilio esiste: 
+            il recupero inizia prima, nel tuo ambiente, senza dipendere da nessuno per gli spostamenti.
+            </p>
+        </ArticleSection>  
+    </article>
+
+    
+    
+	<ContactForm></ContactForm>
+	<style>
+    .article{
+        justify-self: center;
+        display:flex;
+        flex-direction: column;
+        gap:var(--space-10);
+        padding:var(--space-20) 0;
+    }   
+    </style>
+</Base>
+
+</html>

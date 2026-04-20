@@ -1,0 +1,227 @@
+---
+// src/components/AboutHero.astro
+// First section of /chi-sono page
+// Usage: <AboutHero />
+
+interface Props {
+  name?: string;
+  role?: string;
+}
+
+const {
+  name = 'Marco Rossi',
+  role = 'fisioterapista',
+} = Astro.props;
+---
+
+<section class="about-hero" aria-labelledby="about-hero-heading">
+  <div class="about-hero-container">
+
+    <div class="about-hero-photo">
+      <div class="photo-frame">
+        <img
+          src="/images/chi-sono.jpg"
+          alt={`${name}, ${role}, durante una seduta di fisioterapia a domicilio`}
+          width="680"
+          height="907"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <dl class="photo-caption">
+        <div class="caption-row">
+          <dt class="sr-only">Nome</dt>
+          <dd class="caption-name">Dott. {name}</dd>
+        </div>
+        <div class="caption-row">
+          <dt class="sr-only">Qualifica</dt>
+          <dd class="caption-role">Fisioterapista — Albo TSRM-PSTRP di Milano n° 1234</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="about-hero-content">
+      <h1 id="about-hero-heading">{name}, {role}</h1>
+
+      <p>Mi sono laureato in Fisioterapia all'Università degli Studi di Milano. Per i primi anni ho lavorato in ospedale e in ambulatorio, occupandomi di riabilitazione ortopedica e neurologica.</p>
+
+      <p>Con il tempo ho notato una cosa ricorrente: molti dei miei pazienti facevano una fatica sproporzionata per raggiungere lo studio. Anziani che dipendevano dai familiari per ogni spostamento. Persone appena operate che rischiavano di rimandare l'inizio della riabilitazione perché non riuscivano a muoversi. In alcuni casi il percorso riabilitativo si interrompeva semplicemente per un problema logistico.</p>
+
+      <p>Ho iniziato a fare visite a domicilio quasi per necessità. I risultati mi hanno convinto a farne la mia unica modalità di lavoro: i pazienti sono più rilassati, partecipano di più, e il fatto di lavorare nel loro ambiente mi permette di adattare gli esercizi alla loro vita quotidiana. Oggi la fisioterapia domiciliare non è un servizio accessorio che offro — è il mio mestiere.</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .about-hero {
+    padding: 64px 0 80px;
+  }
+
+  .about-hero-container {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ── Foto ── */
+  .about-hero-photo {
+    position: sticky;
+    top: 96px;
+  }
+
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--secondary-100);
+    border: 1px solid var(--secondary-200);
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Caption ── */
+  .photo-caption {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--secondary-50);
+    border: 1px solid var(--secondary-200);
+    border-radius: 12px;
+  }
+
+  .caption-row {
+    display: flex;
+  }
+
+  .caption-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 2px;
+  }
+
+  .caption-role {
+    font-size: 1rem;
+    color: var(--neutral-700);
+    line-height: 1.5;
+  }
+
+  /* ── Contenuto ── */
+  .about-hero-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    line-height: 1.25;
+    color: var(--neutral-900);
+    margin-bottom: 24px;
+  }
+
+  .about-hero-content p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--neutral-700);
+    margin-bottom: 18px;
+  }
+
+  .about-hero-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Screen reader only ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+  }
+
+  /* ── Scroll animation ── */
+  .about-hero-photo,
+  .about-hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .about-hero-content {
+    transition-delay: 0.12s;
+  }
+
+  .about-hero-photo.visible,
+  .about-hero-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .about-hero { padding: 48px 0 64px; }
+
+    .about-hero-container {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      max-width: 640px;
+    }
+
+    .about-hero-photo {
+      position: static;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .about-hero { padding: 40px 0 48px; }
+
+    .about-hero-container { gap: 28px; }
+
+    .about-hero-photo { max-width: 240px; }
+
+    .about-hero-content p {
+      font-size: 1rem;
+    }
+
+    .photo-caption {
+      padding: 14px 16px;
+    }
+  }
+
+  /* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .about-hero-photo,
+    .about-hero-content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.about-hero-photo, .about-hero-content').forEach(el => observer.observe(el));
+</script>

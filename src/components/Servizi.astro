@@ -1,0 +1,297 @@
+---
+// src/components/Services.astro
+const services = [
+  {
+    href: '/servizi/riabilitazione-post-operatoria',
+    title: 'Riabilitazione post-operatoria',
+    text: 'Dopo un intervento — protesi d\'anca, ginocchio, artroscopia, ricostruzione legamenti — il recupero va iniziato il prima possibile. Vengo da te anche pochi giorni dopo l\'operazione.',
+    icon: 'trending-up',
+  },
+  {
+    href: '/servizi/fisioterapia-ortopedica',
+    title: 'Fisioterapia ortopedica',
+    text: 'Dolori articolari, mal di schiena, cervicale, problemi di postura. Lavoro con le mani e con esercizi mirati per individuare e trattare la causa del problema.',
+    icon: 'user',
+  },
+  {
+    href: '/servizi/fisioterapia-geriatrica',
+    title: 'Fisioterapia geriatrica',
+    text: 'Per le persone anziane, mantenere la mobilità e l\'equilibrio è fondamentale per l\'autonomia quotidiana. Il domicilio è l\'ambiente più adatto per questo tipo di lavoro.',
+    icon: 'heart',
+  },
+  {
+    href: '/servizi/fisioterapia-sportiva',
+    title: 'Fisioterapia sportiva',
+    text: 'Strappi muscolari, distorsioni, tendiniti. Lavoro sul recupero funzionale e sulla riatletizzazione per un ritorno all\'attività in sicurezza.',
+    icon: 'zap',
+  },
+  {
+    href: '/servizi/fisioterapia-neurologica',
+    title: 'Fisioterapia neurologica',
+    text: 'Riabilitazione dopo ictus, e per patologie come sclerosi multipla e Parkinson. Il lavoro a domicilio riduce lo stress e permette di integrare gli esercizi nella routine quotidiana.',
+    icon: 'activity',
+  },
+  {
+    href: '/servizi/valutazione-posturale',
+    title: 'Valutazione posturale',
+    text: 'Un\'analisi di come ci si muove e ci si posiziona, utile per capire l\'origine di dolori ricorrenti e impostare un lavoro preventivo.',
+    icon: 'search',
+  },
+];
+---
+
+<section class="services" aria-labelledby="services-heading">
+  <div class="services-container">
+
+    <header class="section-header">
+      <p class="section-label">Servizi</p>
+      <h2 class="section-title">Cosa posso fare per te</h2>
+    </header>
+
+    <ul class="services-grid" role="list">
+      {services.map((s, i) => (
+        <li class="service-card" style={`--delay: ${i * 0.08}s`}>
+          <div class="service-icon" aria-hidden="true">
+            {s.icon === 'trending-up' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            )}
+            {s.icon === 'user' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            )}
+            {s.icon === 'heart' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+              </svg>
+            )}
+            {s.icon === 'zap' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            )}
+            {s.icon === 'activity' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            )}
+            {s.icon === 'search' && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="service-title">{s.title}</h3>
+          <p class="service-text">{s.text}</p>
+          <a class="service-link" href={s.href}>
+            Scopri di più
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .services {
+    padding: 80px 0;
+    background: var(--neutral-50);
+  }
+
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+ 
+
+  /* ── Griglia ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── Card ── */
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--neutral-150);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(26,25,23,0.08);
+    transform: translateY(-3px);
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* ── Icona ── */
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--primary-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-700);
+    margin-bottom: 20px;
+    transition: background 0.25s ease;
+  }
+
+  .service-card:hover .service-icon {
+    background: var(--primary-100);
+  }
+
+  /* ── Testi ── */
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--neutral-900);
+    margin-bottom: 8px;
+  }
+
+  .service-text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--neutral-700);
+    margin-bottom: 20px;
+  }
+
+  /* ── Link ── */
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-700);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .service-link:hover {
+    gap: 10px;
+  }
+
+  .service-link:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* ── Scroll animation ── */
+  .service-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s ease var(--delay, 0s),
+      transform 0.5s ease var(--delay, 0s),
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card.visible:hover {
+    transform: translateY(-3px);
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .services { padding: 64px 0; }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .services { padding: 48px 0; }
+    .services-header { margin-bottom: 36px; }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .service-card { padding: 24px 20px; }
+  }
+
+  /* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .service-card::before { transition: none; }
+    .service-icon { transition: none; }
+    .service-link { transition: none; }
+  }
+
+  @media (hover: none) {
+    .service-card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .service-card:hover::before {
+      transform: scaleX(0);
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
+</script>

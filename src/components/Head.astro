@@ -1,0 +1,45 @@
+---
+import { Schema } from 'astro-seo-schema';
+
+interface Props {
+    title: string;
+    description: string;
+    page: string;
+}
+const {title, description } = Astro.props;
+---
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+    <base href="https://ilfisioadomicilio.it">-->
+
+    <title>{title}</title>
+    <meta name="description" content={description}>
+
+    <link rel="icon" sizes="192x192" href="/path/to/icon.png">
+    <link rel="stylesheet" href="/styles/global.css"/>    
+    <link rel="canonical" href="http://ilfisioadomicilio.it/" />
+    <Schema 
+        item={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://www.ilfisioadomicilio.it",
+            "sameAs": ["https://example.net/profile/example1234", "https://example.org/example1234"],
+            "logo": "https://www.example.com/images/logo.png",
+            "name": "ilfisioadomicilio",
+            "description": "Il Dott. Monea è un fisioterapista che offre servizi di riabilitazione a domicilio",
+            "email": "info@emanuelemonea.it",
+            "telephone": "+393395721209",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bareggio",
+                "addressCountry": "IT",
+                "addressRegion": "Lombardia",
+                "postalCode": "20008"
+            },
+            "vatID": "FR12345678901",
+        }}    
+    />
+
+</head>

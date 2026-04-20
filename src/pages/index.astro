@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/base.astro'
+import Head from '../components/Head.astro'
+
+import ChiSono from '../components/Chi_Sono.astro'
+import ContactForm from '../components/ContactForm.astro'
+import FAQ from '../components/FAQ.astro'
+import Hero from '../components/Hero.astro'
+import Requirements from '../components/Requirements.astro'
+import Steps from '../components/Steps.astro'
+import Servizi from '../components/Servizi.astro'
+import Zones from '../components/Zones.astro'
+
+const faqs = [{
+	"data":  [
+		{
+			question: 'Come funziona la prima visita?',
+			answer: 'Vengo a domicilio, valuto la situazione e ti spiego cosa penso si possa fare. Dura circa un\'ora perché comprende un colloquio iniziale, la valutazione fisica e la definizione del piano. La prima visita è gratuita e non vincola a proseguire.',
+		},
+		{
+			question: 'Serve la prescrizione del medico?',
+			answer: 'No. Puoi contattarmi direttamente senza prescrizione. Se hai una prescrizione o dei referti dal medico di base o dallo specialista, è utile portarli alla prima visita perché mi aiutano a inquadrare la situazione, ma non sono indispensabili.',
+		},
+		{
+			question: 'Quanto costa una seduta?',
+			answer: 'Il costo varia in base al tipo di trattamento e alla durata della seduta. Lo definisco dopo la prima visita, prima di iniziare qualsiasi percorso. Rilascio fattura sanitaria, detraibile al 19% nella dichiarazione dei redditi.',
+		},
+		{
+			question: 'Che attrezzatura porti a domicilio?',
+			answer: 'Lettino professionale pieghevole, elettromedicali (TENS, ultrasuoni), bande elastiche, strumenti per terapia manuale e mobilizzazione. Serve solo uno spazio libero di circa due per due metri.',
+		},
+		{
+			question: 'Quanto dura una seduta?',
+			answer: 'Tra 45 e 60 minuti, a seconda del trattamento. La prima visita richiede circa un\'ora perché include la valutazione iniziale.',
+		},
+		{
+			question: 'Come funziona il pagamento?',
+			answer: 'Contanti, bonifico o carta. Il pagamento è a seduta, senza pacchetti obbligatori.',
+		},
+	]
+	}
+];
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="index">
+	<Hero index={true}></Hero>
+	<Steps></Steps>
+	<Servizi></Servizi>
+	<Zones></Zones>
+	<ChiSono></ChiSono>
+	<FAQ 
+		faqdata={faqs}
+		header="Domande frequenti"
+		subtitle="Quello che i pazienti mi chiedono più spesso."
+		linkToFaq={true}/>
+	<ContactForm></ContactForm>
+	
+</Base>
+</html>

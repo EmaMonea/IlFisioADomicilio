@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/base.astro'
+import Head from '../components/Head.astro'
+
+import ContactForm from '../components/ContactForm.astro'
+import FAQ from '../components/FAQ.astro'
+import Hero from '../components/Hero.astro'
+import TitleDivider from '../components/TitleDivider.astro'
+import { internalSpreadAttributes } from 'astro/runtime/server/render/util.js'
+
+const faqs = [    
+    {
+        "sectionTitle": "aspetti pratici",
+        "data": [
+            {
+                question: 'Quanto dura una seduta?',
+                answer: 'Tra 45 e 60 minuti, a seconda del trattamento. La prima visita dura circa un\'ora in quanto la valutazione iniziale richiede più tempo.',
+            },
+            {
+                question: 'Che cosa mi serve?',
+                answer: 'Un piccolo spazio in cui si può lavorare, un pizzico di collaborazione e un po\' d\'impegno.',
+            },
+            {
+                question: 'Che attrezzatura porti a domicilio?',
+                answer: 'Dipende da cosa è necessario durante il percorso terapeutico. Ho a disposizione un lettino fisioterapico, bande elastiche e altra attrezzatura specifica.',
+            },
+            {
+                question: 'Posso disdire o spostare un appuntamento?',
+                answer: 'Sì. Prima delle 24 ore precedenti.',
+            },]
+    },
+    {
+        "sectionTitle": "Prima visita e percorso fisioterapico",
+        "data": [
+            {
+                question: 'Come funziona la prima visita?',
+                answer: 'Durante la prima visita viene effettuata la raccolta dei dati anamnestici, la valutazione iniziale, l\'esame obiettivo e la somministrazione della scale di valutazione. Questo permette la definizione di un punto di partenza e la definizione del piano di trattamento. Dura circa un\'ora.',
+            },
+            {
+                question: 'Serve la prescrizione del medico?',
+                answer: 'No. Il fisioterapista è un professionista sanitario con la possibilità di accesso diretto. Puoi contattarmi direttamente senza prescrizione. ',
+            },
+            {
+                question: 'Quante sedute servono per il mio problema?',
+                answer: 'Dipende dal problema e da altri fattori. Se vuoi saperlo contattami e spiegami il problema: è più probabile che io riesca a darti una risposta più precisa.',
+            },
+            {
+                question: 'Quante sedute a settimana?',
+                answer: 'Tra 45 e 60 minuti, a seconda del trattamento. La prima visita richiede circa un\'ora perché include la valutazione iniziale.',
+            }]
+    },
+    {
+        "sectionTitle": "Costi e pagamento",
+        "data": [
+            {
+                question: 'Come funziona il pagamento?',
+                answer: 'Tramite bonifico bancario. A breve introdurrò la possibilità di pagare con carta.',
+            },
+            {
+                question: 'Quanto costa una seduta?',
+                answer: '65€. Un pacchetto di 5 sedute costa 300€. A questi importi va aggiunto il 4% per l\'INPS.',
+            },
+            {
+                question: 'Posso detrarre il costo?',
+                answer: 'Sì, per tutte le spese sanitarie oltre l\'importo di 129,11€ annui. Il pagamento deve essere tracciabile.',
+            }]
+    }
+];
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="index">
+    <Hero 
+        index={false}
+        title="Domande frequenti"
+        subtitle="Quello che i pazienti mi chiedono più spesso, prima di iniziare. Se non trovi
+la risposta che cerchi, contattami direttamente."
+        breadcrumb='FAQ'
+        CTA={false}
+        />
+
+        <FAQ 
+            faqdata={faqs}         
+            linkToFaq={false}
+        /> 
+
+	<ContactForm></ContactForm>	
+
+</Base>
+</html>

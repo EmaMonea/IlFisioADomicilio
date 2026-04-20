@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/base.astro'
+import Head from '../components/Head.astro'
+
+import CitiesList from '../components/CitiesList.astro'
+import ContactForm from '../components/ContactForm.astro'
+import Hero from '../components/Hero.astro'
+
+const locations = [
+  {
+    title: 'Milano - quartieri ovest',
+    cities: ['San Siro', 'Baggio', 'Quinto Romano', 'Figino', 'Trenno', 'Muggiano', 'Gallaratese', 'Forze Armate']
+  },
+  {
+    title: 'Comuni limitrofi',
+    cities: ['Pero', 'Rho', 'Cornaredo', 'Corsico', 'Settimo Milanese', 'Cusago', 'Trezzano sul Naviglio', 'Assago', 'Buccinasco']
+  },
+  {
+    title: 'Provincia di Milano - zona ovest',
+    cities: ['Pregnana Milanese', 'Vanzago', 'Pogliano Milanese', 'Bareggio', 'Sedriano', 'Vittuone', 'Arluno', 'Corbetta', 'Cisliano', 'Gaggiano']
+  }
+]
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="index">
+    <Hero 
+        index={false}
+        title="Dove lavoro"
+        subtitle="Opero a domicilio nell'ovest milanese. Qui sotto trovi tutti i comuni che raggiungo regolarmente. 
+        Se il tuo comune non è presente, contattami: è possibile che possa raggiungerti lo stesso."
+        breadcrumb='Zone servite'
+        />
+    <section class="section">
+        {
+            locations.map((location) => (
+                <CitiesList 
+                    title={location.title}
+                    cities={location.cities}
+                />
+            ))
+        }     
+
+    </section>
+	
+	<ContactForm></ContactForm>
+	
+</Base>
+
+</html>

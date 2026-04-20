@@ -1,0 +1,202 @@
+---
+export type Faqlist = {
+    question: string;
+    answer: string;
+}
+interface Props {
+    faqlist: Faqlist[];
+}
+const {faqlist} = Astro.props;
+
+---
+
+<dl class="faq-list">
+      {faqlist.map((faq, i) => (
+        <div class="faq-item" data-index={i}>
+          <dt>
+            <button
+              class="faq-question"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-button-${i}`}
+            >
+              {faq.question}
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd
+            class="faq-answer"
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-button-${i}`}
+          >
+            <p>{faq.answer}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+<style>
+          /* ── Lista ── */
+  .faq-list {
+    margin: 0;
+  }
+
+  /* ── Singolo item ── */
+  .faq-item {
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  /* ── Domanda ── */
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    min-height: 64px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    text-align: left;
+    line-height: 1.45;
+    transition: color 0.15s ease;
+  }
+
+  .faq-question:hover {
+    color: var(--primary-800);
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: -2px;
+    border-radius: 4px;
+  }
+
+  /* ── Icona ── */
+  .faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--primary-700);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease;
+  }
+
+  .faq-icon svg {
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+    color: var(--white);
+  }
+
+  .faq-item.open .faq-icon svg {
+    transform: rotate(45deg);
+  }
+
+  /* ── Risposta ── */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    margin: 0;
+    padding: 0;
+  }
+
+  .faq-item.open .faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-answer p {
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--neutral-700);
+    padding: 0 48px 20px 0;
+    margin: 0;
+  }
+  /* ── Scroll animation ── */
+  .faq-list {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .faq-list.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+/* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-list {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .faq-answer { transition: none; }
+    .faq-icon, .faq-icon svg { transition: none; }
+    .faq-question { transition: none; }
+  }
+
+  @media (hover: none) {
+    .faq-question:hover { color: var(--neutral-900); }
+  }
+</style>
+
+<script>
+  // Accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item')!;
+      const wasOpen = item.classList.contains('open');
+
+      // Chiudi tutti
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question')!.setAttribute('aria-expanded', 'false');
+      });
+
+      // Apri questo se era chiuso
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Prima FAQ aperta al caricamento
+  const first = document.querySelector('.faq-item')!;
+  first.classList.add('open');
+
+  // Scroll animation
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.faq-list').forEach(el => observer.observe(el));
+</script>

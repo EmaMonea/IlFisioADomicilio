@@ -1,0 +1,88 @@
+---
+// src/components/Faq.astro
+import FAQList from "./FAQ_list.astro";
+import TitleDivider from "./TitleDivider.astro";
+import type { Faqlist } from "./FAQ_list.astro";
+
+
+interface Props {
+    faqdata: {
+      sectionTitle?: string;
+      data: Faqlist[];      
+    }[];
+    header?: string;
+    subtitle?: string; 
+    linkToFaq: boolean;
+}
+const {faqdata, header, subtitle, linkToFaq} = Astro.props;
+---
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    { header && subtitle &&
+      <div class="section-header">
+        <h2 class="section-title">{header}</h2>
+        <p class="section-subtitle">{subtitle} </p>
+      </div>
+    }
+    {
+      faqdata.map((section) => (
+        <div class="faq-container">
+           {section.sectionTitle && <TitleDivider title={section.sectionTitle} />}
+           <FAQList faqlist={section.data}></FAQList>
+        </div>
+      ))
+    }
+
+    {
+      linkToFaq && <p class="faq-more">Altre domande? <a href="/faq">Vai alla pagina FAQ completa</a></p>
+    }
+  </section>
+
+<style>
+  /* ── Sezione ── */
+  .faq-section{
+      padding:var(--space-20) var(--space-6);      
+      max-width: 1200px;
+      margin: auto;
+  }
+  .faq-container {
+    margin: 0 auto;
+    padding:0 0 var(--space-16) 0;
+  }
+
+  /* ── Link pagina completa ── */
+  .faq-more {
+    margin-top: 32px;
+    font-size: 1rem;
+    color: var(--neutral-700);
+  }
+
+  .faq-more a {
+    color: var(--primary-800);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .faq-more a:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .faq { padding: 64px 0; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .faq { padding: 48px 0; }
+    .faq-header { margin-bottom: 32px; }
+    .faq-question { padding: 18px 0; }
+    .faq-answer p { padding-right: 0; }
+  }
+
+  
+</style>

@@ -1,0 +1,188 @@
+---
+// src/components/Requirements.astro
+---
+
+<section class="requirements" aria-labelledby="requirements-heading">
+  <div class="requirements-container">
+
+    <header class="requirements-header">
+      <h2 id="requirements-heading">Cosa serve da parte tua</h2>
+    </header>
+
+    <ol class="requirements-list" role="list">
+
+      <li class="requirement">
+        <h3 class="requirement-title">Collaborazione</h3>
+        <p class="requirement-text">La fisioterapia non è un trattamento passivo. I risultati arrivano quando il paziente partecipa al percorso — durante le sedute e tra una seduta e l'altra. Questo vale per tutti, dal ventenne sportivo alla persona anziana.</p>
+      </li>
+
+      <li class="requirement">
+        <h3 class="requirement-title">Uno spazio</h3>
+        <p class="requirement-text">Non serve una stanza dedicata. Basta un'area libera dove entrino un lettino e due persone — il soggiorno va benissimo.</p>
+      </li>
+
+      <li class="requirement">
+        <h3 class="requirement-title">Costanza</h3>
+        <p class="requirement-text">Un percorso riabilitativo ha bisogno di continuità. Prima di iniziare ci confrontiamo su tempi e frequenza, in modo che siano sostenibili per te.</p>
+      </li>
+
+    </ol>
+
+  </div>
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .requirements {
+    padding: 80px 0;
+  }
+
+  .requirements-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  .requirements-header {
+    margin-bottom: 40px;
+  }
+
+  .requirements-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    line-height: 1.3;
+    color: var(--neutral-900);
+  }
+
+  /* ── Lista ── */
+  .requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: req;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Singolo item ── */
+  .requirement {
+    counter-increment: req;
+    padding: 32px 0 32px 28px;
+    border-left: 2px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-150);
+    position: relative;
+    transition: border-left-color 0.3s ease;
+  }
+
+  .requirement:last-child {
+    border-bottom: none;
+  }
+
+  .requirement:hover {
+    border-left-color: var(--primary-400);
+  }
+
+  /* ── Counter ── */
+  .requirement-title::before {
+    content: counter(req);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary-50);
+    color: var(--primary-800);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 12px;
+    vertical-align: middle;
+    transition: background 0.25s ease;
+  }
+
+  .requirement:hover .requirement-title::before {
+    background: var(--primary-100);
+  }
+
+  /* ── Testi ── */
+  .requirement-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .requirement-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--neutral-700);
+    padding-left: 40px;
+  }
+
+  /* ── Scroll animation ── */
+  .requirement {
+    opacity: 0;
+    transform: translateX(-12px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease,
+      border-left-color 0.3s ease;
+  }
+
+  .requirement:nth-child(1) { transition-delay: 0s; }
+  .requirement:nth-child(2) { transition-delay: 0.1s; }
+  .requirement:nth-child(3) { transition-delay: 0.2s; }
+
+  .requirement.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .requirements { padding: 64px 0; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .requirements { padding: 48px 0; }
+    .requirements-header { margin-bottom: 32px; }
+    .requirement { padding: 24px 0 24px 20px; }
+    .requirement-text { padding-left: 40px; }
+  }
+
+  /* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .requirement {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .requirement-title::before { transition: none; }
+  }
+
+  @media (hover: none) {
+    .requirement:hover { border-left-color: var(--neutral-200); }
+    .requirement:hover .requirement-title::before { background: var(--primary-50); }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  document.querySelectorAll('.requirement').forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,93 @@
+<nav class="nav">
+    <ul class="nav-links">
+        <li class="nav-link"><a href="/">Servizi</a></li>
+        <li class="nav-link"><a href="/zone/">Zone</a></li>
+        <li class="nav-link"><a href="/chi_sono/">Chi sono</a></li>
+        <li class="nav-link"><a href="/faq/">FAQ</a></li>
+        <li class="nav-link"><a href="/contatti/">Contatti</a></li>
+    </ul>
+
+</nav>
+<div class="cta">
+        <a class="nav-phone" href="tel:+393395721209">
+            339 57 21 209
+        </a>
+        <a  class="btn btn-md btn-primary" href="#contatti">
+            Contattami
+        </a>
+</div>
+<style> 
+    nav {
+        display:flex;
+        grid-column: 5/9 ;
+        height: 72px;
+    }
+
+    .nav { 
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: var(--z-sticky);
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--neutral-150);
+        transition: box-shadow var(--duration-base);
+    }
+    
+    .nav.scrolled { box-shadow: var(--shadow-sm); }
+    
+    .nav-inner {
+        max-width: var(--container-xl);
+        margin: 0 auto;
+        padding: 0 var(--space-6);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+        align-items: center;
+    }
+    
+    .nav-link {
+        font-size: var(--text-md);
+        font-weight: var(--weight-medium);
+        color: var(--neutral-600);
+        padding: var(--space-2) 14px;
+        border-radius: var(--radius-md);
+        transition: all var(--duration-fast);
+        display: block;
+    }
+    
+    
+    .cta { 
+        grid-column: 9/11;
+        display: flex;
+        justify-content:end;
+        gap: var(--space-2);
+        align-items: center;
+    }
+    
+    .nav-phone {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: var(--text-md);
+        font-weight: var(--weight-semibold);
+        color: var(--primary-700);
+        margin:var(--space-2);
+    }
+    
+    .nav-phone svg { width: 16px; height: 16px; }
+  
+    @media (max-width: 1200px) {
+        nav {
+            display: none;
+        }
+    }
+</style>

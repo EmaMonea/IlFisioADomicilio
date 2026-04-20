@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/base.astro'
+import Head from '../components/Head.astro'
+
+import AboutHero from '../components/AboutHero.astro'
+import ContactForm from '../components/ContactForm.astro'
+import Hero from '../components/Hero.astro'
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="index">
+    <AboutHero name="Emanuele Monea" role="fisioterapista"/>
+    <section class="section-alt">
+        <article class="container">
+            <h2>Emanuele Monea</h2>
+        </article>
+    </section>
+	
+	<ContactForm></ContactForm>
+	
+</Base>
+</html>

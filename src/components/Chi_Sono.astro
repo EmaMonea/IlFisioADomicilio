@@ -1,0 +1,202 @@
+---
+// src/components/About.astro
+---
+ 
+<section class="about section-alt" aria-labelledby="about-heading">
+  <div class="about-container">
+ 
+    <div class="about-photo" aria-hidden="true">
+      <div class="about-photo-placeholder">Foto del fisioterapista</div>
+    </div>
+ 
+    <div class="about-content">
+      <p class="section-label">Chi sono</p>
+      <h2 id="about-heading">Emanuele Monea, fisioterapista</h2>
+
+      <p>Mi sono laureato in Fisioterapia all'Università di Humanitas a Rozzano.<br> 
+         Ho accumulato esperienza nel trattamento di pazienti nel decorso post-operatorio, di patologie neurologiche e cardio-respiratorie. 
+         Successivamente ho lavorato in ambito ambulatoriale, trattando problematiche ortopediche.
+      </p><br>
+      <p style="margin-bottom:var(--space-5);">Con il tempo ho scelto di concentrarmi sulla fisioterapia domiciliare. Molti pazienti — soprattutto anziani e persone reduci da un intervento — faticano a raggiungere uno studio. A domicilio lavorano meglio, sono più collaborativi e i risultati si vedono prima. Oggi è l'unica modalità in cui opero.</p>
+ 
+      <a class="about-link" href="/chi-sono">
+        La mia formazione e il mio approccio
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+ 
+  </div>
+</section>
+ 
+<style>
+  /* ── Sezione ── */
+  .about {
+    padding: 80px 0;
+  }
+ 
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+ 
+  /* ── Foto ── */
+  .about-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--secondary-100);
+    border: 1px solid var(--secondary-200);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--secondary-500);
+  }
+ 
+  /* ── Contenuto ── */
+  .about-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-800);
+    margin-bottom: 8px;
+  }
+ 
+  .about-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    line-height: 1.3;
+    color: var(--neutral-900);
+    margin-bottom: 20px;
+  }
+ 
+ 
+ 
+  /* ── Credenziali ── */
+  .about-credentials {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+ 
+  .about-credentials li {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--neutral-800);
+    padding-left: 20px;
+    position: relative;
+  }
+ 
+  .about-credentials li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--primary-500);
+  }
+ 
+  /* ── Link ── */
+  .about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-800);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+ 
+  .about-link:hover {
+    gap: 10px;
+  }
+ 
+  .about-link:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+ 
+  /* ── Scroll animation ── */
+  .about-photo,
+  .about-content {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    height:100%;
+  }
+ 
+  .about-content {
+    transition-delay: 0.1s;
+  }
+ 
+  .about-photo.visible,
+  .about-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  /* ── Tablet ── */
+  @media (max-width: 900px) {
+    .about { padding: 64px 0; }
+ 
+    .about-container {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+ 
+    .about-photo-placeholder {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+ 
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .about { padding: 48px 0; }
+ 
+    .about-photo-placeholder {
+      max-width: 240px;
+    }
+  }
+ 
+  /* ── Accessibilità ── */
+  @media (prefers-reduced-motion: reduce) {
+    .about-photo,
+    .about-content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .about-link { transition: none; }
+  }
+ 
+  @media (hover: none) {
+    .about-link:hover { gap: 6px; }
+  }
+</style>
+ 
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+ 
+  document.querySelectorAll('.about-photo, .about-content').forEach(el => observer.observe(el));
+</script>

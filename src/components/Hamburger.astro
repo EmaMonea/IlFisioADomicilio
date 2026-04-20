@@ -1,0 +1,211 @@
+<button type="button" class="ham-menu" aria-expanded="false" aria-controls="primary-nav" aria-label="Navigation Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+<nav id="primary-nav" class="hidden-menu" aria-label="Mobile navigation">
+    <ul>
+        <li><a href="/">Servizi</a></li>
+        <li><a href="/zone/">Zone</a></li>
+        <li><a href="/chi_sono/">Chi sono</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+    </ul>
+</nav>
+
+<script is:inline>
+    if (document.readyState === 'complete') {
+        initialize();
+    } else {
+        document.addEventListener('DOMContentLoaded', initialize);
+    }
+
+    function initialize() {
+        const hamMenu = document.querySelector('.ham-menu');
+        const hiddenMenu = document.querySelector('.hidden-menu');
+        const links = document.querySelectorAll('.hidden-menu a');
+        const alltabble = document.querySelectorAll('a, button, input, textarea, select, details, [tabindex]');
+        const body = document.querySelector('body');
+
+        //Disable tabbing if menu is closed
+        links.forEach((link) => {
+            link.setAttribute('tabIndex', '-1');
+        });
+
+        hamMenu.addEventListener('click', () => {
+            const isExpanded = hamMenu.getAttribute('aria-expanded') === 'true';
+            const newState = !isExpanded;
+
+            body.classList.toggle('unscrollable');
+            if (newState) {
+                alltabble.forEach((tabbable) => {
+                    tabbable.setAttribute('tabIndex', '-1');
+                });
+                links.forEach((link) => {
+                    link.setAttribute('tabIndex', '0');
+                });
+            } else {
+                alltabble.forEach((tabbable) => {
+                    tabbable.setAttribute('tabIndex', '0');
+                });
+                links.forEach((link) => {
+                    link.setAttribute('tabIndex', '-1');
+                });
+            }
+            hamMenu.setAttribute('tabIndex', '0');
+
+            // Update ARIA states
+            hamMenu.setAttribute('aria-expanded', newState ? 'true' : 'false');
+            hiddenMenu.setAttribute('aria-hidden', newState ? 'false' : 'true');
+
+            // Toggle classes for visual state
+            hamMenu.classList.toggle('active');
+            hiddenMenu.classList.toggle('active');
+
+            // If menu is now open, trap focus within it
+            if (newState) {
+                // Optional: focus the first link in the menu
+                setTimeout(() => {
+                    const firstLink = hiddenMenu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }, 100);
+            }
+        });
+
+        // Add keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && hiddenMenu.classList.contains('active')) {
+                // Close menu when Escape key is pressed
+                hamMenu.click();
+                hamMenu.focus();
+            }
+        });
+    }
+</script>
+
+<style>
+    span {
+    }
+
+    .ham-menu span {
+        height: 3px;
+        width: 80%;
+        background-color: #3f1a1a;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.3s ease;
+    }
+
+    .ham-menu span:nth-child(1) {
+        top: 25%;
+    }
+
+    .ham-menu span:nth-child(2) {
+        top: 75%;
+    }
+
+    ul {
+        list-style-type: none;
+        font-size: 1.75em;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+    }
+
+    a:focus {
+        text-decoration: underline;
+    }
+
+    .hidden-menu {
+        background-color: #3f1a1a;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s ease;
+        font-family: 'Noto-Sans';
+        z-index: -1;
+    }
+
+    .hidden-menu.active {
+        right: 0;
+        z-index: 997;
+    }
+
+    img {
+        display: block;
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    .ham-menu {
+        margin: auto;
+        display: none;
+        grid-column: 9;
+        justify-content: flex - end;
+        align-items: center;
+        margin-left: 0.5rem;
+        height: 50px;
+        width: 50px;
+        position: relative;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 999;
+    }
+
+    button:hover {
+        cursor: pointer;
+        box-shadow: none;
+    }
+
+    .ham-menu.active span:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background-color: white;
+    }
+
+    .ham-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .ham-menu.active span:nth-child(3) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        background-color: white;
+    }
+
+    @media (max-width: 1024px) {
+        .ham-menu {
+            display: flex;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hidden-menu {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .ham-menu {
+            height: 40px;
+            width: 40px;
+            padding: 0;
+        }
+    }
+</style>
