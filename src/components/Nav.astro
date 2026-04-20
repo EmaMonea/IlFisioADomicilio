@@ -1,93 +1,605 @@
-<nav class="nav">
-    <ul class="nav-links">
-        <li class="nav-link"><a href="/">Servizi</a></li>
-        <li class="nav-link"><a href="/zone/">Zone</a></li>
-        <li class="nav-link"><a href="/chi_sono/">Chi sono</a></li>
-        <li class="nav-link"><a href="/faq/">FAQ</a></li>
-        <li class="nav-link"><a href="/contatti/">Contatti</a></li>
+---
+// src/components/Nav.astro
+// Uso: <Nav currentPath={Astro.url.pathname} />
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const services = [
+  { href: '/servizi/riabilitazione-post-operatoria', label: 'Riabilitazione post-operatoria', desc: 'Protesi, artroscopie, legamenti' },
+  { href: '/servizi/fisioterapia-ortopedica', label: 'Fisioterapia ortopedica', desc: 'Dolori articolari, schiena, postura' },
+  { href: '/servizi/fisioterapia-geriatrica', label: 'Fisioterapia geriatrica', desc: 'Mobilità, equilibrio, autonomia' },
+  { href: '/servizi/fisioterapia-sportiva', label: 'Fisioterapia sportiva', desc: 'Infortuni, recupero, riatletizzazione' },
+  { href: '/servizi/fisioterapia-neurologica', label: 'Fisioterapia neurologica', desc: 'Ictus, Parkinson, sclerosi multipla' },
+];
+
+const navLinks = [
+  { href: '/zone', label: 'Zone' },
+  { href: '/chi-sono', label: 'Chi sono' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/#contatti', label: 'Contatti' },
+];
+
+const isServicePage = currentPath.startsWith('/servizi');
+---
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+
+    <!-- Brand -->
+    <a class="brand" href="/">Il Fisio <span>a Domicilio</span></a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="menubar">
+
+      <!-- Dropdown servizi -->
+      <li class="dropdown" role="none">
+        <button
+          class:list={['nav-link dropdown-toggle', { active: isServicePage }]}
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="dropdown-menu"
+          role="menuitem"
+        >
+          Servizi
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <ul class="dropdown-menu" id="dropdown-menu" role="menu">
+          {services.map(s => (
+            <li role="none">
+              <a
+                href={s.href}
+                role="menuitem"
+                class:list={['dropdown-item', { current: currentPath === s.href }]}
+              >
+                {s.label}
+                <small>{s.desc}</small>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+
+      <!-- Link normali -->
+      {navLinks.map(link => (
+        <li role="none">
+          <a
+            href={link.href}
+            role="menuitem"
+            class:list={['nav-link', { active: currentPath === link.href }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
     </ul>
 
-</nav>
-<div class="cta">
-        <a class="nav-phone" href="tel:+393395721209">
-            339 57 21 209
-        </a>
-        <a  class="btn btn-md btn-primary" href="#contatti">
-            Contattami
-        </a>
-</div>
-<style> 
-    nav {
-        display:flex;
-        grid-column: 5/9 ;
-        height: 72px;
-    }
+    <!-- Desktop CTA -->
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+393331234567" aria-label="Chiama il 333 123 4567">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 014.12 2 2 2 0 016.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7a2 2 0 012 1.72z"/>
+        </svg>
+        339 57 21 209
+      </a>
+      <a class="btn-nav" href="/#contatti">Contattami</a>
+    </div>
 
-    .nav { 
-        justify-content: center;
-        position: sticky;
-        top: 0;
-        z-index: var(--z-sticky);
-        background: rgba(255,255,255,0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--neutral-150);
-        transition: box-shadow var(--duration-base);
-    }
-    
-    .nav.scrolled { box-shadow: var(--shadow-sm); }
-    
-    .nav-inner {
-        max-width: var(--container-xl);
-        margin: 0 auto;
-        padding: 0 var(--space-6);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        
-    }
-    
-    .nav-links {
-        display: flex;
-        gap: 4px;
-        list-style: none;
-        align-items: center;
-    }
-    
-    .nav-link {
-        font-size: var(--text-md);
-        font-weight: var(--weight-medium);
-        color: var(--neutral-600);
-        padding: var(--space-2) 14px;
-        border-radius: var(--radius-md);
-        transition: all var(--duration-fast);
-        display: block;
-    }
-    
-    
-    .cta { 
-        grid-column: 9/11;
-        display: flex;
-        justify-content:end;
-        gap: var(--space-2);
-        align-items: center;
-    }
-    
-    .nav-phone {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: var(--text-md);
-        font-weight: var(--weight-semibold);
-        color: var(--primary-700);
-        margin:var(--space-2);
-    }
-    
-    .nav-phone svg { width: 16px; height: 16px; }
-  
-    @media (max-width: 1200px) {
-        nav {
-            display: none;
-        }
-    }
+    <!-- Hamburger -->
+    <button
+      class="hamburger"
+      aria-label="Apri menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+
+      <!-- Servizi accordion -->
+      <div class="mobile-section">
+        <button
+          class="mobile-accordion"
+          aria-expanded="false"
+          aria-controls="mobile-services"
+        >
+          Servizi
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <ul class="mobile-submenu" id="mobile-services">
+          {services.map(s => (
+            <li><a href={s.href}>{s.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      {navLinks.map(link => (
+        <a class="mobile-link" href={link.href}>{link.label}</a>
+      ))}
+
+      <!-- Mobile CTA -->
+      <div class="mobile-cta">
+        <a class="mobile-cta-btn phone" href="tel:+393395721209">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 014.12 2 2 2 0 016.11 2h3a2 2 0 012 1.72"/>
+          </svg>
+          Chiama
+        </a>
+        <a class="mobile-cta-btn wa" href="https://wa.me/3395721209" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.57-1.703l-.44-.338-2.848.955.955-2.848-.338-.44A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* ── BASE ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--neutral-150);
+  }
+
+  .nav.scrolled {
+    box-shadow: 0 1px 3px rgba(26,25,23,0.08);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  /* ── BRAND ── */
+  .brand {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--primary-800);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand span {
+    color: var(--primary-500);
+  }
+
+  /* ── DESKTOP LINKS ── */
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--neutral-600);
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: color 150ms, background 150ms;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--primary-700);
+    background: var(--primary-50);
+  }
+
+  /* ── DROPDOWN ── */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-toggle svg {
+    transition: transform 0.2s;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: -8px;
+    min-width: 280px;
+    background: var(--white);
+    border: 1px solid var(--neutral-150);
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(26,25,23,0.08);
+    padding: 8px;
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown.open .dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--neutral-700);
+    text-decoration: none;
+    transition: color 150ms, background 150ms;
+  }
+
+  .dropdown-item:hover {
+    background: var(--primary-50);
+    color: var(--primary-700);
+  }
+
+  .dropdown-item.current {
+    background: var(--primary-50);
+    color: var(--primary-700);
+    font-weight: 600;
+  }
+
+  .dropdown-item small {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--neutral-500);
+    margin-top: 1px;
+  }
+
+  /* ── DESKTOP CTA ── */
+  .nav-cta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .nav-phone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-700);
+    text-decoration: none;
+  }
+
+  .btn-nav {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--primary-600);
+    color: white;
+    text-decoration: none;
+    transition: background 150ms;
+  }
+
+  .btn-nav:hover {
+    background: var(--primary-700);
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: -10px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: var(--neutral-700);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger span:nth-child(1) { margin-bottom: 5px; }
+  .hamburger span:nth-child(3) { margin-top: 5px; }
+
+  /* Animazione X */
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--neutral-150);
+    box-shadow: 0 10px 15px -3px rgba(26,25,23,0.08);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .mobile-menu.open {
+    max-height: 600px;
+  }
+
+  .mobile-menu-inner {
+    padding: 8px 24px 24px;
+  }
+
+  /* Links mobile */
+  .mobile-link {
+    display: block;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--neutral-700);
+    text-decoration: none;
+    border-bottom: 1px solid var(--neutral-150);
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Accordion servizi mobile */
+  .mobile-section {
+    border-bottom: 1px solid var(--neutral-150);
+  }
+
+  .mobile-accordion {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--neutral-700);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    min-height: 48px;
+  }
+
+  .mobile-accordion svg {
+    transition: transform 0.3s;
+  }
+
+  .mobile-accordion.open svg {
+    transform: rotate(180deg);
+  }
+
+  .mobile-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-submenu.open {
+    max-height: 400px;
+  }
+
+  .mobile-submenu a {
+    display: block;
+    padding: 12px 0 12px 16px;
+    font-size: 0.925rem;
+    color: var(--neutral-600);
+    text-decoration: none;
+    border-top: 1px solid var(--neutral-100);
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-submenu a:hover {
+    color: var(--primary-700);
+  }
+
+  /* CTA mobile dentro menu */
+  .mobile-cta {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .mobile-cta-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 48px;
+  }
+
+  .mobile-cta-btn.phone {
+    background: var(--primary-600);
+    color: white;
+  }
+
+  .mobile-cta-btn.wa {
+    background: #25D366;
+    color: white;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    .nav-links,
+    .nav-cta { display: none; }
+
+    .hamburger { display: block; }
+    .mobile-menu { display: block; }
+
+    .nav-inner { height: 64px; }
+    .mobile-menu-inner { padding: 8px 16px 20px; }
+  }
 </style>
+
+<script>
+  // Scroll shadow
+  const nav = document.getElementById('nav')!;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Hamburger toggle
+  const hamburger = document.querySelector('.hamburger')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'Chiudi menu' : 'Apri menu');
+  });
+
+  // Mobile accordion
+  const mobileAccordion = document.querySelector('.mobile-accordion')!;
+  const mobileSubmenu = document.getElementById('mobile-services')!;
+
+  mobileSubmenu.querySelectorAll('a').forEach(a => {
+    a.setAttribute('tabindex', '-1');
+  });
+
+  mobileAccordion.addEventListener('click', () => {
+    const isOpen = mobileAccordion.classList.toggle('open');
+    mobileSubmenu.classList.toggle('open', isOpen);
+    mobileAccordion.setAttribute('aria-expanded', String(isOpen));
+    
+    mobileSubmenu.querySelectorAll('a').forEach(a => {
+    a.setAttribute('tabindex', isOpen ? '0' : '-1');
+  });
+  });
+
+  // Desktop dropdown — click-based (non hover)
+  const dropdown = document.querySelector('.dropdown')!;
+  const dropdownToggle = document.querySelector('.dropdown-toggle')!;
+
+  dropdownToggle.addEventListener('click', () => {
+    const isOpen = dropdown.classList.toggle('open');
+    dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Chiudi dropdown cliccando fuori
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target as Node)) {
+      dropdown.classList.remove('open');
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Chiudi dropdown con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
+const dropdownMenu = document.getElementById('dropdown-menu')!;
+
+dropdownMenu.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+
+  const items = dropdownMenu.querySelectorAll<HTMLElement>('a');
+  const first = items[0];
+  const last = items[items.length - 1];
+
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+});
+ 
+
+mobileMenu.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+
+  const items = dropdownMenu.querySelectorAll<HTMLElement>('a');
+  const first = items[0];
+  const last = items[items.length - 1];
+
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+});
+  // Chiudi mobile menu quando si clicca un link
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>

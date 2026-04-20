@@ -2,28 +2,17 @@
 // src/components/AboutHero.astro
 // First section of /chi-sono page
 // Usage: <AboutHero />
-
-interface Props {
-  name?: string;
-  role?: string;
-}
-
-const {
-  name = 'Marco Rossi',
-  role = 'fisioterapista',
-} = Astro.props;
+ 
 ---
 
-<section class="about-hero" aria-labelledby="about-hero-heading">
-  <div class="about-hero-container">
+<section class="about-hero section-warm" aria-labelledby="about-hero-heading">
+  <div class="about-hero-container container">
 
     <div class="about-hero-photo">
       <div class="photo-frame">
         <img
           src="/images/chi-sono.jpg"
-          alt={`${name}, ${role}, durante una seduta di fisioterapia a domicilio`}
-          width="680"
-          height="907"
+          alt={`Emanuele Monea, fisioterapista, durante una seduta di fisioterapia a domicilio`}
           loading="eager"
           decoding="async"
         />
@@ -31,7 +20,7 @@ const {
       <dl class="photo-caption">
         <div class="caption-row">
           <dt class="sr-only">Nome</dt>
-          <dd class="caption-name">Dott. {name}</dd>
+          <dd class="caption-name">Emanuele Monea</dd>
         </div>
         <div class="caption-row">
           <dt class="sr-only">Qualifica</dt>
@@ -39,17 +28,13 @@ const {
         </div>
       </dl>
     </div>
-
     <div class="about-hero-content">
-      <h1 id="about-hero-heading">{name}, {role}</h1>
-
-      <p>Mi sono laureato in Fisioterapia all'Università degli Studi di Milano. Per i primi anni ho lavorato in ospedale e in ambulatorio, occupandomi di riabilitazione ortopedica e neurologica.</p>
-
-      <p>Con il tempo ho notato una cosa ricorrente: molti dei miei pazienti facevano una fatica sproporzionata per raggiungere lo studio. Anziani che dipendevano dai familiari per ogni spostamento. Persone appena operate che rischiavano di rimandare l'inizio della riabilitazione perché non riuscivano a muoversi. In alcuni casi il percorso riabilitativo si interrompeva semplicemente per un problema logistico.</p>
-
-      <p>Ho iniziato a fare visite a domicilio quasi per necessità. I risultati mi hanno convinto a farne la mia unica modalità di lavoro: i pazienti sono più rilassati, partecipano di più, e il fatto di lavorare nel loro ambiente mi permette di adattare gli esercizi alla loro vita quotidiana. Oggi la fisioterapia domiciliare non è un servizio accessorio che offro — è il mio mestiere.</p>
+      <h1 id="about-hero-heading">Emanuele Monea, fisioterapista</h1>
+      <p>Mi sono laureato in Fisioterapia all'Università privata Humanitas di Rozzano. Durante il tirocinio universitario e lo svolgimento della professione ho avuto occasione di accumulare esperienza in particolare in ambito ortopedico, neurologico e geriatrico.<p/>
+      <p>Inoltre, ho avuto occasione di trattare pazienti con problematiche cardio-respiratorie, sviluppando una visione più completa e sistemica che impiego durante il trattamento.</p>
+      <p>Nel tempo ho, per necessità, iniziato ad effettuare sedute di fisioterapia al domicilio in quanto i pazienti stessi esprimevano la volontà di continuare a domicilio con lo stesso terapista con cui avevano iniziato la terapia in ospedale.
+      <p>Ad oggi la fisioterapia domiciliare non è più un servizio accessorio che offro: è quello principale. Pertanto ho sviluppato molte strategie per fornire la stessa qualità del trattamento che si può ricevere nella maggior parte delle strutture.</p>
     </div>
-
   </div>
 </section>
 
@@ -59,8 +44,7 @@ const {
     padding: 64px 0 80px;
   }
 
-  .about-hero-container {
-    max-width: 1060px;
+  .about-hero-container { 
     margin: 0 auto;
     padding: 0 24px;
     display: grid;
