@@ -4,6 +4,7 @@ import Head from '../../components/Head.astro'
 
 import ContactForm from '../../components/ContactForm.astro'
 import Hero from '../../components/Hero.astro'
+import Process from '../../components/Process.astro'
 import ArticleSection from '../../components/ArticleSection.astro'
 
 
@@ -23,43 +24,57 @@ import ArticleSection from '../../components/ArticleSection.astro'
         subtitle="Dopo un intervento chirurgico, il recupero va iniziato il prima possibile sempre nel rispetto delle indicazioni ortopediche."
         breadcrumb='Riabilitazione post operatoria'
     />
-    <section class="section-alt">
+    <section class="">
         <article class="article">
             <ArticleSection title="La situazione">
                 <p>
-                Sei stato operato — protesi d'anca, protesi di ginocchio, artroscopia, ricostruzione 
-                del crociato — e sei tornato a casa. L'ortopedico ti ha detto di iniziare la fisioterapia,
-                ma muoverti per raggiungere uno studio è complicato, soprattutto nelle prime settimane. 
-                Magari hai le stampelle, fai fatica a salire in macchina, oppure vivi da solo e non hai chi ti accompagna.
-                È una situazione molto comune. Ed è esattamente il motivo per cui la riabilitazione a domicilio esiste: 
-                il recupero inizia prima, nel tuo ambiente, senza dipendere da nessuno per gli spostamenti.
+                Sei stato operato e sei tornato a casa. L'ortopedico ti ha detto di iniziare la fisioterapia, ha dato dei consigli 
+                generali sulla gestione post-operatoria ma non ti ha esattamente spiegato come tornare alla “normalità”.
+                <br><br>
+                È una situazione molto comune. Ed è proprio uno dei ruoli del fisioterapista: non solo concentrarsi sul recupero ma 
+                anche educarti su come arrivarci accompagnandoti nel percorso passo passo.
                 </p>
             </ArticleSection>
             <ArticleSection title="Il percorso">
                 <p>
-                Sei stato operato — protesi d'anca, protesi di ginocchio, artroscopia, ricostruzione 
-                del crociato — e sei tornato a casa.<br> L'ortopedico ti ha detto di iniziare la fisioterapia,
-                ma muoverti per raggiungere uno studio è complicato, soprattutto nelle prime settimane. 
-                Magari hai le stampelle, fai fatica a salire in macchina, oppure vivi da solo e non hai chi ti accompagna.
-                È una situazione molto comune. Ed è esattamente il motivo per cui la riabilitazione a domicilio esiste: 
-                il recupero inizia prima, nel tuo ambiente, senza dipendere da nessuno per gli spostamenti.
+                Il percorso segue i tempi biologici della guarigione. 
+                Non è uguale per tutti e dipende molto dal tipo dall’operazione, dall’articolazione operata e dall’età del paziente. <br>
+                <br>Nonostante ciò, la riabilitazione post-chirurgica ha spesso principi comuni e segue un percorso strutturato.
+                <Process 
+                    steps={[
+                        { title: 'Valutazione iniziale', text: 'Durante la prima valutazione prendo visione della documentazione disponibile. Durante l\'esame obiettivo esamino lo stato della ferita, il range di movimento, il livello di dolore, la capacità di reclutare la muscolatura e attuale forza muscolare. Da qui imposto il piano terapeutico.' },
+                        { title: 'Fase iniziale', text: 'Nelle prime settimane lavoriamo per recuperare il completo arco del movimento dell\'articolazione, ridurre il dolore e recuperare la forza. Le sedute in questa fase sono spesso più frequenti.' },
+                        { title: 'Fase intermedia', text: 'Durante questa fase si sposta il lavoro maggiormente sull\'esercizio terapeutico. Il dolore è diminuito e ciò permette una fisioterapia più attiva. Recupero dei corretti schemi del movimento, della forza e gestione dei compensi.' },
+                        { title: 'Conclusione del percorso', text: 'Consolidamento dei risultati ottenuti. Il percorso si chiude quando abbiamo raggiunto gli obiettivi prefissati. In ultima seduta ti lascio una routine di esercizi per il mantenimento dei risultati sul lungo termine.' },
+                    ]}
+                /> 
                 </p>
             </ArticleSection>  
         </article>
     </section>
-    
-    
-	<ContactForm></ContactForm>
-	<style>
-        
+	<ContactForm/>
+	<style is:global >
+        .hero-content {
+            max-width: 760px !important;
+        }
         .article{
             display:flex;
             flex-direction: column;
             gap:var(--space-10);
-            padding:var(--space-20) 0; 
+            padding:var(--space-12) 0; 
             margin:0 auto;            
-			max-width:var(--container-xl);
-        }   
+			max-width:var(--container-md);
+        }  
+        .article p {
+            color: var(--neutral-700);
+            font-size: var(--text-md);
+            line-height: 1.75;
+        }
+        @media screen and (max-width:1200px){
+            .article p{
+                font-size: var(--text-base);
+            }
+        }
     </style>
 </Base>
 

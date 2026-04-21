@@ -18,20 +18,36 @@ import Timeline from '../components/Timeline.astro'
 	active="index">
     <AboutHero />
     <section class="section-alt">
-        <article class="article"> 
-			<ArticleSection title="Percorso lavorativo">
+        <article class="article "> 
+			<ArticleSection title="Percorso di formazione e lavorativo">
 				<Timeline 
 					entries={[
 						{ year: '2022', title:'Laurea in Fisioterapia', description:'Università privata Humanitas di Rozzano'},
 						{ year: '2023-24', title: 'Reparto di cure intermedie', description: 'Esperienza nel trattamento di patologie ortopediche, neurologiche e cardio-respiratorie in reparto'},
-						{ year: '2024-26', title: 'Ambulatorio ospedaliero', description: 'Esperienza nel trattamento di patologie muscolo-scheletriche, ortopediche e neurologiche in regime ambulatoriale.'},
-						{ year: '2024-corrente', title: 'Attività domiciliare', description: 'Trattamento e gestione dei pazienti a domicilio nell\'ovest milanese.'},
+						{ year: '2024-26', title: 'Ambulatorio ospedaliero', description: 'Esperienza nel trattamento di patologie muscolo-scheletriche, ortopediche e neurologiche in regime ambulatoriale'},
+						{ year: '2024-corrente', title: 'Attività domiciliare', description: 'Trattamento e gestione dei pazienti a domicilio nell\'ovest milanese'},
 					]}	
 				/>
 			</ArticleSection>
 			<ArticleSection title="Metodologia di lavoro">
 				<div>
-					
+					<p>
+					La valutazione è una parte fondamentale del trattamento stesso: è ciò che permette al fisioterapista di comprendere qual è
+					il problema e fare <strong>nessi logici</strong> tra ciò che osserva e la capacità funzionale del paziente.<br>					
+					Pertanto il fisioterapista è una figura che deve avere la capacità di applicare rigore logico e le conoscenze specifiche acquisite. 
+					Questo perchè altrimenti si rischia di trattare i sintomi e non l'origine degli stessi.
+					</p>
+					<p>
+					La fisioterapia si basa molto sulla personalizzazione: nonostante siano stati pubblicati molti protocolli per diverse patologie e disordini,
+					questi perdono il loro senso se non personalizzati sul paziente.<br>
+					Ne consegue che il metodo di un fisioterapista dovrebbe essere molto adattabile perchè i protocolli sono un metodo rigido e riducono la personalizzazione del trattamento.
+					</p>
+					<p>
+					Inoltre la fisioterapia è una professione sanitaria con una caratteristica che la distingue dalle altre: 
+					il fisioterapista è spesso la figura che passa più tempo con il paziente. Questo significa che la qualità 
+					del trattamento dipende tanto dalle competenze tecniche quanto dalla capacità di costruire una relazione efficace 
+					con chi si ha davanti.
+					</p>
 				</div>
 			</ArticleSection>
         </article>
@@ -39,7 +55,6 @@ import Timeline from '../components/Timeline.astro'
 	
 	<ContactForm></ContactForm>
 	<style>
-		
 	    .article{
             display:flex;		
             flex-direction: column;
@@ -48,6 +63,16 @@ import Timeline from '../components/Timeline.astro'
 			max-width:var(--container-xl);
 			margin:0 auto;
         }  
+		.article div > p{
+			font-size: var(--text-md);
+			margin-bottom: var(--space-4);
+			color: var(--neutral-800);
+		}
+		@media screen and (max-width:1200px){
+			.article div > p{
+				font-size: var(--text-base);
+			}	
+		}
 	</style>
 </Base>
 </html>
