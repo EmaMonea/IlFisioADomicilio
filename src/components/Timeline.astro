@@ -1,0 +1,117 @@
+---
+// src/components/Timeline.astro
+// Usage: <Timeline title="Formazione e percorso" entries={[...]} />
+
+interface TimelineEntry {
+  year: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  entries: TimelineEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+
+<ol class="timeline-list" role="list">
+    {entries.map((entry, i) => (
+    <li class="timeline-entry" style={`--delay: ${i * 0.08}s`}>
+        <span class="timeline-year">{entry.year}</span>
+        <div class="timeline-body">
+        <h3>{entry.title}</h3>
+        <p>{entry.description}</p>
+        </div>
+    </li>
+    ))}
+</ol>
+
+
+
+<style>
+  .timeline-list {
+    list-style: none;
+    padding: var(--space-8);
+    margin: 0;
+  }
+
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--neutral-150);
+  }
+
+  .timeline-year {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-800);
+    padding-top: 2px;
+  }
+
+  .timeline-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 4px;
+  }
+
+  .timeline-body p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--neutral-700);
+    margin: 0;
+  }
+
+  /* Scroll animation */
+  .timeline-entry {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease var(--delay, 0s), transform 0.4s ease var(--delay, 0s);
+  }
+
+  .timeline-entry.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .timeline { padding: 64px 0; }
+  }
+
+  @media (max-width: 640px) {
+    .timeline { padding: 48px 0; }
+
+    .timeline-entry {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-entry {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.timeline-entry').forEach(el => observer.observe(el));
+</script>

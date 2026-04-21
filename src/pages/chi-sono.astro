@@ -4,7 +4,8 @@ import Head from '../components/Head.astro'
 
 import AboutHero from '../components/AboutHero.astro'
 import ContactForm from '../components/ContactForm.astro'
-
+import ArticleSection from '../components/ArticleSection.astro'
+import Timeline from '../components/Timeline.astro'
 ---
 <!DOCTYPE html>
 <html lang="it">
@@ -17,11 +18,36 @@ import ContactForm from '../components/ContactForm.astro'
 	active="index">
     <AboutHero />
     <section class="section-alt">
-        <article class="container"> 
+        <article class="article"> 
+			<ArticleSection title="Percorso lavorativo">
+				<Timeline 
+					entries={[
+						{ year: '2022', title:'Laurea in Fisioterapia', description:'Università privata Humanitas di Rozzano'},
+						{ year: '2023-24', title: 'Reparto di cure intermedie', description: 'Esperienza nel trattamento di patologie ortopediche, neurologiche e cardio-respiratorie in reparto'},
+						{ year: '2024-26', title: 'Ambulatorio ospedaliero', description: 'Esperienza nel trattamento di patologie muscolo-scheletriche, ortopediche e neurologiche in regime ambulatoriale.'},
+						{ year: '2024-corrente', title: 'Attività domiciliare', description: 'Trattamento e gestione dei pazienti a domicilio nell\'ovest milanese.'},
+					]}	
+				/>
+			</ArticleSection>
+			<ArticleSection title="Metodologia di lavoro">
+				<div>
+					
+				</div>
+			</ArticleSection>
         </article>
     </section>
 	
 	<ContactForm></ContactForm>
-	
+	<style>
+		
+	    .article{
+            display:flex;		
+            flex-direction: column;
+            gap:var(--space-10);
+            padding:var(--space-20) 0;
+			max-width:var(--container-xl);
+			margin:0 auto;
+        }  
+	</style>
 </Base>
 </html>
