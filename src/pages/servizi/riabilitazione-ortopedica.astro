@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/base.astro'
+import Head from '../../components/Head.astro'
+
+import ContactForm from '../../components/ContactForm.astro'
+import Hero from '../../components/Hero.astro'
+import Process from '../../components/Process.astro'
+import ArticleSection from '../../components/ArticleSection.astro'
+
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="Riabilitazione ortopedica">
+    <Hero 
+        index={false}
+        title="Riabilitazione ortoepdica"
+        subtitle="Lombalgia, cervicalgia e dolori articolari sono le problematiche muscolo-scheletriche più comuni. Il trattamento richiede tendenzialmente una corretta dose di 3 ingredienti: terapia manuale, esercizio riabilitativo ed educazione."
+        breadcrumb='Riabilitazione post operatoria'
+    />
+    <section class="">
+        <article class="article">
+            <ArticleSection title="La situazione">
+                <p>
+                Sei stato operato e sei tornato a casa. L'ortopedico ti ha detto di iniziare la fisioterapia, ha dato dei consigli 
+                generali sulla gestione post-operatoria ma non ti ha esattamente spiegato come tornare alla “normalità”.
+                <br><br>
+                È una situazione molto comune. Ed è proprio uno dei ruoli del fisioterapista: non solo concentrarsi sul recupero ma 
+                anche educarti su come arrivarci accompagnandoti nel percorso passo passo.
+                </p>
+            </ArticleSection>
+            <ArticleSection title="Il percorso">
+                <p>
+                Il percorso segue i tempi biologici della guarigione. 
+                Non è uguale per tutti e dipende molto dal tipo dall’operazione, dall’articolazione operata e dall’età del paziente. <br>
+                <br>Nonostante ciò, la riabilitazione post-chirurgica ha spesso principi comuni e segue un percorso strutturato.
+                <Process 
+                    steps={[
+                        { title: 'Valutazione iniziale', text: 'Durante la prima valutazione prendo visione della documentazione disponibile. Durante l\'esame obiettivo esamino lo stato della ferita, il range di movimento, il livello di dolore, la capacità di reclutare la muscolatura e attuale forza muscolare. Da qui imposto il piano terapeutico.' },
+                        { title: 'Fase iniziale', text: 'Nelle prime settimane lavoriamo per recuperare il completo arco del movimento dell\'articolazione, ridurre il dolore e recuperare la forza. Le sedute in questa fase sono spesso più frequenti.' },
+                        { title: 'Fase intermedia', text: 'Durante questa fase si sposta il lavoro maggiormente sull\'esercizio terapeutico. Il dolore è diminuito e ciò permette una fisioterapia più attiva. Recupero dei corretti schemi del movimento, della forza e gestione dei compensi.' },
+                        { title: 'Conclusione del percorso', text: 'Consolidamento dei risultati ottenuti. Il percorso si chiude quando abbiamo raggiunto gli obiettivi prefissati. In ultima seduta ti lascio una routine di esercizi per il mantenimento dei risultati sul lungo termine.' },
+                    ]}
+                /> 
+                </p>
+            </ArticleSection>  
+        </article>
+    </section>
+	<ContactForm/>
+	<style is:global >
+        .hero-content {
+            max-width: 760px !important;
+        }
+        .article{
+            display:flex;
+            flex-direction: column;
+            gap:var(--space-10);
+            padding:var(--space-12) 0; 
+            margin:0 auto;            
+			max-width:var(--container-md);
+        }  
+        .article p {
+            color: var(--neutral-700);
+            font-size: var(--text-md);
+            line-height: 1.75;
+        }
+        @media screen and (max-width:1200px){
+            .article p{
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</Base>
+
+</html>

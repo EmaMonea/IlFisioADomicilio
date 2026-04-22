@@ -8,33 +8,33 @@ const services = [
     icon: 'trending-up',
   },
   {
-    href: '/servizi/fisioterapia-ortopedica',
-    title: 'Fisioterapia ortopedica',
+    href: '/servizi/riabilitazione-muscolo-scheletrica',
+    title: 'Riabilitazione muscolo-scheletrica',
     text: 'Lombalgia e cervicalgia sono le problematiche più comuni. Richiedono una corretta dose di 3 ingredienti: terapia manuale, esercizio riabilitativo ed educazione.',
     icon: 'user',
   },
   {
-    href: '/servizi/fisioterapia-geriatrica',
-    title: 'Fisioterapia geriatrica',
+    href: '/servizi/riabilitazione-geriatrica',
+    title: 'Riabilitazione geriatrica',
     text: 'Il paziente geriatrico richiede capacità di gestione a 360° perchè spesso più fragile. L\'obiettivo è il recupero dell\'autonomia nelle attività quotidiane: camminare, vestirsi, gestire la propria igiene.',
     icon: 'heart',
   },
   {
-    href: '/servizi/fisioterapia-sportiva',
-    title: 'Fisioterapia sportiva',
-    text: 'Strappi muscolari, distorsioni, tendiniti. Lavoro sul recupero funzionale e sulla riatletizzazione per un ritorno all\'attività in sicurezza.',
+    href: '/servizi/riabilitazione-sportiva',
+    title: 'Riabilitazione sportiva',
+    text: 'Strappi muscolari, distorsioni, tendiniti. Si lavora sul recupero funzionale e sulla riatletizzazione per un ritorno all\'attività in sicurezza.',
     icon: 'zap',
   },
   {
-    href: '/servizi/fisioterapia-neurologica',
-    title: 'Fisioterapia neurologica',
-    text: 'Riabilitazione dopo ictus e per patologie come sclerosi multipla e Parkinson. Il lavoro a domicilio riduce lo stress e permette di integrare gli esercizi nella routine quotidiana.',
+    href: '/servizi/riabilitazione-neurologica',
+    title: 'Riabilitazione neurologica',
+    text: 'Riabilitazione dopo ictus e per patologie come sclerosi multipla e Parkinson.',
     icon: 'activity',
   },
 ];
 ---
 
-<section class="services" aria-labelledby="services-heading">
+<section id="servizi" class="services" aria-labelledby="services-heading">
   <div class="services-container">
 
     <header class="section-header">
@@ -53,9 +53,14 @@ const services = [
               </svg>
             )}
             {s.icon === 'user' && (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+              <svg  width="40" height="40" viewBox="0 0 363 421" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0,421) scale(0.1,-0.1)">
+                  <path d="M2496 3735 c-301 -401 -476 -749 -476 -950 0 -90 18 -145 109 -326 114 -227 120 -330 27 -436 -90 -103 -293 -141 -493 -93 -276 66 -419 268 -382 537 26 190 96 294 356 531 124 112 138 131 383 494 180 268 193 289 182 313 -8 18 -19 25 -40 25 -30 0 -47 -23 -376 -515 -60 -89 -108 -146 -186 -220 -282 -269 -332 -331 -387 -490 -25 -72 -27 -93 -27 -215 0 -122 2 -141 27 -203 53 -136 136 -225 272 -292 112 -56 209 -78 345 -78 302 0 484 140 483 373 -1 95 -21 156 -119 354 -90 182 -97 220 -66 345 51 198 219 496 456 806 42 55 76 103 76 108 0 25 -23 47 -49 47 -25 0 -40 -15 -115 -115z"/>
+                  <path d="M1195 2969 c-37 -30 -101 -128 -147 -225 -72 -153 -99 -320 -78 -474 6 -47 16 -91 22 -97 15 -19 52 -16 72 6 14 16 15 25 5 72 -15 68 -6 243 16 324 22 82 84 208 140 284 51 69 57 108 18 122 -16 6 -29 2 -48 -12z"/>
+                  <path d="M1387 2312 c-28 -30 -20 -56 37 -119 101 -111 247 -167 436 -167 128 0 173 13 178 52 7 46 -10 51 -136 45 -207 -10 -331 39 -444 175 -30 36 -48 40 -71 14z"/>
+                  <path d="M1057 1994 c-37 -25 -71 -52 -74 -61 -14 -36 98 -376 177 -540 42 -87 65 -119 145 -203 54 -57 114 -133 139 -177 80 -136 150 -344 185 -549 10 -62 22 -117 25 -123 12 -19 64 -13 76 9 20 37 -28 278 -94 469 -63 183 -141 313 -263 438 -110 112 -171 236 -258 525 -31 101 -32 108 -16 122 25 23 31 21 86 -25 334 -277 716 -333 1041 -153 33 19 63 34 67 34 8 0 -57 -203 -93 -289 -101 -245 -134 -525 -84 -718 32 -129 138 -293 188 -293 27 0 46 18 46 42 0 10 -18 42 -41 70 -84 107 -119 220 -119 387 0 176 17 248 135 576 48 133 87 285 80 312 -7 31 -32 53 -59 53 -13 0 -57 -22 -98 -49 -141 -93 -262 -131 -424 -131 -209 0 -423 91 -607 258 -37 34 -73 62 -80 62 -7 0 -43 -21 -80 -46z"/>
+                  <path d="M1921 1261 c-27 -27 -36 -93 -35 -246 0 -119 7 -174 35 -278 11 -41 42 -61 71 -46 26 14 29 39 12 99 -21 76 -30 299 -15 385 12 67 12 70 -9 87 -28 23 -36 22 -59 -1z"/>
+                </g>
               </svg>
             )}
             {s.icon === 'heart' && (
@@ -64,14 +69,10 @@ const services = [
               </svg>
             )}
             {s.icon === 'zap' && (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volleyball-icon lucide-volleyball"><path d="M11.1 7.1a16.55 16.55 0 0 1 10.9 4"/><path d="M12 12a12.6 12.6 0 0 1-8.7 5"/><path d="M16.8 13.6a16.55 16.55 0 0 1-9 7.5"/><path d="M20.7 17a12.8 12.8 0 0 0-8.7-5 13.3 13.3 0 0 1 0-10"/><path d="M6.3 3.8a16.55 16.55 0 0 0 1.9 11.5"/><circle cx="12" cy="12" r="10"/></svg>
             )}
             {s.icon === 'activity' && (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-icon lucide-brain"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
             )}
             {s.icon === 'search' && (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">

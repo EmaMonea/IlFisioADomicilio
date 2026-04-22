@@ -17,7 +17,7 @@ import Timeline from '../components/Timeline.astro'
 <Base
 	active="index">
     <AboutHero />
-    <section class="section-alt">
+    <section class="section">
         <article class="article "> 
 			<ArticleSection title="Percorso di formazione e lavorativo">
 				<Timeline 
@@ -58,8 +58,7 @@ import Timeline from '../components/Timeline.astro'
 	    .article{
             display:flex;		
             flex-direction: column;
-            gap:var(--space-10);
-            padding:var(--space-20) 0;
+            gap:var(--space-10); 
 			max-width:var(--container-xl);
 			margin:0 auto;
         }  

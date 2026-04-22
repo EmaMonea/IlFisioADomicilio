@@ -6,59 +6,87 @@
 ---
 
 <section class="about-hero section-warm" aria-labelledby="about-hero-heading">
+  
   <div class="about-hero-container container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span aria-current="page">Chi sono</span>
+    </nav>
 
-    <div class="about-hero-photo">
-      <div class="photo-frame">
-        <img
-          src="/images/chi-sono.jpg"
-          alt={`Emanuele Monea, fisioterapista, durante una seduta di fisioterapia a domicilio`}
-          loading="eager"
-          decoding="async"
-        />
+    <div class="about-hero-grid">
+      <div class="about-hero-photo">
+        <div class="photo-frame">
+          <img
+            src="/images/chi-sono.jpg"
+            alt={`Emanuele Monea, fisioterapista, durante una seduta di fisioterapia a domicilio`}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <dl class="photo-caption">
+          <div class="caption-row">
+            <dt class="sr-only">Nome</dt>
+            <dd class="caption-name">Emanuele Monea</dd>
+          </div>
+          <div class="caption-row">
+            <dt class="sr-only">Qualifica</dt>
+            <dd class="caption-role">Fisioterapista — Albo FNOFI di Milano n° 7791</dd>
+          </div>
+        </dl>
+      </div>    
+      <div class="about-hero-content">
+        <h1 id="about-hero-heading">Emanuele Monea, fisioterapista</h1>
+        <p>Mi sono laureato in Fisioterapia all'Università privata Humanitas di Rozzano. Durante il tirocinio universitario e lo svolgimento della professione ho avuto occasione di accumulare esperienza in particolare in ambito ortopedico, neurologico e geriatrico.<p/>
+        <p>Inoltre, ho avuto occasione di trattare pazienti con problematiche cardio-respiratorie, sviluppando una visione più completa e sistemica che impiego durante il trattamento.</p>
+        <p>Nel tempo ho, per necessità, iniziato ad effettuare sedute di fisioterapia al domicilio in quanto i pazienti stessi esprimevano la volontà di continuare a domicilio con lo stesso terapista con cui avevano iniziato la terapia in ospedale.
+        <p>Ad oggi la fisioterapia domiciliare non è più un servizio accessorio che offro: è quello principale. Pertanto ho sviluppato molte strategie per fornire la stessa qualità del trattamento che si può ricevere nella maggior parte delle strutture.</p>
       </div>
-      <dl class="photo-caption">
-        <div class="caption-row">
-          <dt class="sr-only">Nome</dt>
-          <dd class="caption-name">Emanuele Monea</dd>
-        </div>
-        <div class="caption-row">
-          <dt class="sr-only">Qualifica</dt>
-          <dd class="caption-role">Fisioterapista — Albo FNOFI di Milano n° 7791</dd>
-        </div>
-      </dl>
-    </div>
-    <div class="about-hero-content">
-      <h1 id="about-hero-heading">Emanuele Monea, fisioterapista</h1>
-      <p>Mi sono laureato in Fisioterapia all'Università privata Humanitas di Rozzano. Durante il tirocinio universitario e lo svolgimento della professione ho avuto occasione di accumulare esperienza in particolare in ambito ortopedico, neurologico e geriatrico.<p/>
-      <p>Inoltre, ho avuto occasione di trattare pazienti con problematiche cardio-respiratorie, sviluppando una visione più completa e sistemica che impiego durante il trattamento.</p>
-      <p>Nel tempo ho, per necessità, iniziato ad effettuare sedute di fisioterapia al domicilio in quanto i pazienti stessi esprimevano la volontà di continuare a domicilio con lo stesso terapista con cui avevano iniziato la terapia in ospedale.
-      <p>Ad oggi la fisioterapia domiciliare non è più un servizio accessorio che offro: è quello principale. Pertanto ho sviluppato molte strategie per fornire la stessa qualità del trattamento che si può ricevere nella maggior parte delle strutture.</p>
     </div>
   </div>
 </section>
 
 <style>
   /* ── Sezione ── */
-  .about-hero {
-    padding: 64px 0 80px;
+  .about-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
   }
 
-  .about-hero-container { 
-    margin: 0 auto;
-    padding: 0 24px;
+  .about-hero-grid {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 56px;
     align-items: start;
   }
 
+
   /* ── Foto ── */
   .about-hero-photo {
     position: sticky;
     top: 96px;
   }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    color: var(--neutral-500);
+    margin-bottom: var(--space-6);
+  }
 
+  .breadcrumb a {
+    color: var(--primary-600);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
   .photo-frame {
     width: 100%;
     aspect-ratio: 3 / 4;
@@ -150,13 +178,11 @@
   }
 
   /* ── Tablet ── */
-  @media (max-width: 900px) {
-    .about-hero { padding: 48px 0 64px; }
+  @media (max-width: 900px) { 
 
-    .about-hero-container {
+    .about-hero-grid {
       grid-template-columns: 1fr;
       gap: 36px;
-      max-width: 640px;
     }
 
     .about-hero-photo {
@@ -170,7 +196,9 @@
   @media (max-width: 640px) {
     .about-hero { padding: 40px 0 48px; }
 
-    .about-hero-container { gap: 28px; }
+    .about-hero-grid {
+      gap: 28px;
+    }
 
     .about-hero-photo { max-width: 240px; }
 

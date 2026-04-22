@@ -1,13 +1,7 @@
 ---
 import Hamburger from './Hamburger.astro';
 import Nav from './Nav.astro';
-/*
-    <div class="nav-brand">
-        <a href="/" >Il fisio<span> a domicilio</span></a>
-    </div>
-    <Nav />
-    <Hamburger />
- */
+
 ---
 
 <header>
@@ -16,12 +10,11 @@ import Nav from './Nav.astro';
 </header>
 
 <style>
-    /*header {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(10px, 1fr)) repeat(8, minmax(145px, 1fr)) repeat(2, minmax(10px, 1fr));
-        padding: 1rem 0 0.25rem 0;
-    } */
-
+    header{
+        position:sticky;
+        z-index:999;
+        top:0;
+    }
     .nav-brand {
         height:100%;
         align-content: center;

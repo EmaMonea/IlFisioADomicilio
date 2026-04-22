@@ -181,6 +181,7 @@ body {
   color: var(--neutral-900);
   background: var(--white);
   overflow-x: hidden;
+  position:relative;
 }
  
 img { max-width: 100%; display: block; }
@@ -857,3 +858,8 @@ textarea.input-field {
 .text-left   { text-align: left; }
 .text-right  { text-align: right; }
  
+@media screen and (max-width:1024px){
+  .section{
+    padding:var(--space-16) 0;
+  }
+}

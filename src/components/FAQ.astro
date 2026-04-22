@@ -17,7 +17,8 @@ interface Props {
 const {faqdata, header, subtitle, linkToFaq} = Astro.props;
 ---
 
-  <section class="faq-section" aria-labelledby="faq-heading">
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="faq-inner"> 
     { header && subtitle &&
       <div class="section-header">
         <h2 class="section-title">{header}</h2>
@@ -32,22 +33,31 @@ const {faqdata, header, subtitle, linkToFaq} = Astro.props;
         </div>
       ))
     }
-
+    </article>
     {
       linkToFaq && <p class="faq-more">Altre domande? <a href="/faq">Vai alla pagina FAQ completa</a></p>
     }
+    
   </section>
 
 <style>
   /* ── Sezione ── */
+  .faq-inner{
+      display:flex;		
+      flex-direction: column;
+      gap:var(--space-16); 
+			max-width:var(--container-xl);
+			margin:0 auto;
+  }  
   .faq-section{
-      padding:var(--space-20) var(--space-6);      
+      padding-left: var(--space-6);  
+      padding-right: var(--space-6);        
       max-width: 1200px;
       margin: auto;
   }
   .faq-container {
     margin: 0 auto;
-    padding:0 0 var(--space-16) 0;
+    width:100%; 
   }
 
   /* ── Link pagina completa ── */

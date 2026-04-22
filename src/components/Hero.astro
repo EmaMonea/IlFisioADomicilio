@@ -42,7 +42,7 @@ const {index, title, subtitle, breadcrumb, CTA} = Astro.props;
         </div>
     </section>
     :
-    <section class="hero section-alt">
+    <section class="hero section section-alt">
         <div class="hero-content container">
             <div class="breadcrumb">
                 <a href="/">Home</a>
@@ -201,8 +201,7 @@ const {index, title, subtitle, breadcrumb, CTA} = Astro.props;
     }
     .hero {
         display:flex;
-        flex-direction: column;
-        padding: var(--space-20) 0;
+        flex-direction: column; 
         align-items: center;
     }
     .hero-content{

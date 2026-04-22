@@ -89,8 +89,35 @@ la risposta che cerchi, contattami direttamente."
             faqdata={faqs}         
             linkToFaq={false}
         /> 
+        <section class="section-cta section-warm">
+            <div class="container cta">
+                <h3>Non trovi le informazioni che cerci?</h3>
+                <a href="#contatti" class="btn btn-primary btn-md">Contattami</a>
+            </div>
+        </section>
 
 	<ContactForm></ContactForm>	
-
+<style>
+    .section-cta{
+        padding: var(--space-12)0;
+    }
+    .cta{
+        display:flex; 
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+    }
+    .cta h3{
+        color: var(--neutral-800);
+    }
+    @media screen and (max-width:600px){
+        .cta{
+            flex-wrap: wrap;
+        }
+        .cta h3{
+            text-align: center;
+        }
+    }
+</style>
 </Base>
 </html>
