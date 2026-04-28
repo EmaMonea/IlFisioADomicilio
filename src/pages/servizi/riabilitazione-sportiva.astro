@@ -16,15 +16,14 @@ import ArticleSection from '../../components/ArticleSection.astro'
 	description="prova"
 	page="index"
 	/>
-<Base
-	active="Riabilitazione sportiva">
+<Base active="Riabilitazione sportiva">
     <Hero 
         index={false}
         title="Riabilitazione sportiva"
         subtitle="Dopo un intervento chirurgico, il recupero va iniziato il prima possibile sempre nel rispetto delle indicazioni ortopediche."
-        breadcrumb='Riabilitazione post operatoria'
+        breadcrumb='Riabilitazione sportiva'
     />
-    <section class="">
+    <section>
         <article class="article">
             <ArticleSection title="La situazione">
                 <p class="text">
@@ -48,14 +47,13 @@ import ArticleSection from '../../components/ArticleSection.astro'
                         { title: 'Valutazione iniziale', text: 'Raccolgo la storia dell\'infortunio, il meccanismo che l\'ha causato e gli esami disponibili. Valuto mobilità, forza, stabilità e qualità del movimento per definire il piano di lavoro e le tempistiche.' },
                         { title: 'Fase acuta', text: 'Nelle prime settimane si lavora sulla riduzione del dolore e del gonfiore, sul recupero dell\'arco di movimento e sulla riattivazione muscolare. Terapia manuale e esercizio dosato.' },
                         { title: 'Rinforzo e controllo motorio', text: 'Si ricostruisce la forza, la propriocezione e la coordinazione. Gli esercizi diventano progressivamente più impegnativi e specifici per lo sport praticato.' },
-                        { title: 'Ritorno allo sport', text: 'Quando il recupero richiede lavoro sul campo, corsa, cambi di direzione o gesti tecnici specifici, il percorso prosegue in una struttura attrezzata. Ti indirizzo verso il professionista più adatto e, se necessario, ci coordiniamo per garantire continuità.' },
+                        { title: 'Ritorno allo sport', text: 'Quando il recupero richiede lavoro sul campo, corsa, cambi di direzione o gesti tecnici specifici, il percorso prosegue in una struttura attrezzata. Ti indirizzo verso il professionista più adatto e, se necessario, ci coordiniamo per garantire continuità.' }
                     ]}
-                /> 
-                </p>
+                />  
             </ArticleSection>  
         </article>
     </section>
-	<ContactForm/>
+	<ContactForm></ContactForm>
 	<style is:global >
         .hero-content {
             max-width: 760px !important;
