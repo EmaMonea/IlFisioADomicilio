@@ -16,8 +16,14 @@ const {title, description } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description}>
-
-    <link rel="icon" sizes="192x192" href="/path/to/icon.png">
+    <!-- icon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fisio" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
     <link rel="stylesheet" href="/styles/global.css"/>    
     <link rel="canonical" href="http://ilfisioadomicilio.it/" />
     <Schema 
