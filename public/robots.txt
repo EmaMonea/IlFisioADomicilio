@@ -1,0 +1,10 @@
+# robots.txt of ilfisioadomicilio.it
+# Posizionare in public/robots.txt
+ 
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_astro/
+ 
+Sitemap: https://www.ilfisioadomicilio.it/sitemap-index.xml
+ 
