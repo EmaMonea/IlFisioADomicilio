@@ -1,4 +1,7 @@
 ---
+import { Schema } from 'astro-seo-schema'
+import { schemas } from '../data/schema.ts'
+
 import Base from '../layouts/base.astro'
 import Head from '../components/Head.astro'
 
@@ -44,9 +47,11 @@ const faqs = [{
 <html lang="it">
 <Head
 	title="Il fisio a domicilio"
-	description="Fisioterapista a domicilio nell'ovest milanese. Mi occupo di riabilitazione post-chirurgica, ortopedica, neurologica e geriatrica."
-	page="index"
-	/>
+	description="Fisioterapista a domicilio nell'ovest milanese. Riabilitazione post-operatoria, ortopedica, geriatrica, sportiva, neurologica e cardiologica."
+	page="index">
+		<Schema item={schemas.website}></Schema>
+		<Schema item={schemas.homepage}></Schema>
+</Head>
 <Base
 	active="index">
 	<Hero index={true}></Hero>

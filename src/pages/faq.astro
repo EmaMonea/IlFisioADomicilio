@@ -1,4 +1,7 @@
 ---
+import { Schema } from 'astro-seo-schema'
+import { schemas, breadcrumb } from '../data/schema.ts'
+
 import Base from '../layouts/base.astro'
 import Head from '../components/Head.astro'
 
@@ -46,7 +49,7 @@ const faqs = [
             },
             {
                 question: 'Quante sedute a settimana?',
-                answer: 'Tra 45 e 60 minuti, a seconda del trattamento. La prima visita richiede circa un\'ora perché include la valutazione iniziale.',
+                answer: 'Dipende dalla fase del percorso. In fase acuta o subito dopo un intervento, di solito 3 volte a settimana. Man mano che si progredisce si scende a 2, poi a 1.',
             }]
     },
     {
@@ -69,11 +72,16 @@ const faqs = [
 ---
 <!DOCTYPE html>
 <html lang="it">
-<Head
-	title="Il fisio a domicilio"
-	description="prova"
-	page="index"
-	/>
+<Head 
+    title="Domande Frequenti - Il fisio a domicilio" 
+    description="Costi, durata delle sedute, attrezzatura, prescrizione medica, zone servite e pagamento. Risposte alle domande più frequenti sulla fisioterapia domiciliare" 
+    page="index">    
+        <Schema item={schemas.faq}></Schema>
+        <Schema slot="head" item={breadcrumb([
+            { name: "Home", url: "https://www.ilfisioadomicilio.it" },
+            { name: "FAQ", url: "https://www.ilfisioadomicilio.it/faq" }
+        ])} />
+</Head>
 <Base
 	active="index">
     <Hero 
@@ -83,7 +91,7 @@ const faqs = [
 la risposta che cerchi, contattami direttamente."
         breadcrumb='FAQ'
         CTA={false}
-        />
+    />
 
         <FAQ 
             faqdata={faqs}         

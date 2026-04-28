@@ -1,5 +1,5 @@
 ---
-import { Schema } from 'astro-seo-schema';
+import { Schema } from 'astro-seo-schema'; 
 
 interface Props {
     title: string;
@@ -23,29 +23,9 @@ const {title, description } = Astro.props;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Fisio" />
     <link rel="manifest" href="/site.webmanifest" />
-    
+
     <link rel="stylesheet" href="/styles/global.css"/>    
     <link rel="canonical" href="http://ilfisioadomicilio.it/" />
-    <Schema 
-        item={{
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://www.ilfisioadomicilio.it",
-            "sameAs": ["https://example.net/profile/example1234", "https://example.org/example1234"],
-            "logo": "https://www.example.com/images/logo.png",
-            "name": "ilfisioadomicilio",
-            "description": "Emanuele Monea è un fisioterapista che offre servizi di riabilitazione a domicilio",
-            "email": "info@emanuelemonea.it",
-            "telephone": "+393395721209",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Bareggio",
-                "addressCountry": "IT",
-                "addressRegion": "Lombardia",
-                "postalCode": "20008"
-            },
-            "vatID": "FR12345678901",
-        }}    
-    />
+    <slot></slot>
 
 </head>

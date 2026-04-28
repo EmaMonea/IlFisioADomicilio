@@ -1,4 +1,7 @@
 ---
+import { Schema } from 'astro-seo-schema';
+import { breadcrumb } from '../data/schema.ts';
+
 import Base from '../layouts/base.astro'
 import Head from '../components/Head.astro'
 
@@ -24,10 +27,14 @@ const locations = [
 <!DOCTYPE html>
 <html lang="it">
 <Head
-	title="Il fisio a domicilio"
-	description="prova"
-	page="index"
-	/>
+    title="Zone servite - Il fisio a domicilio"
+    description="Opero a domicilio a Cornaredo, Cusago, Corsico, San Siro, Baggio, Rho, Settimo Milanese, Vittuone, Buccinasco, Trezzano e altri comuni dell'ovest milanese."
+    page="index">
+      <Schema slot="head" item={breadcrumb([
+        { name: "Home", url: "https://www.ilfisioadomicilio.it" },
+        { name: "Zone servite", url: "https://www.ilfisioadomicilio.it/zone" }
+      ])} />
+</Head>
 <Base
 	active="index">
     <Hero 

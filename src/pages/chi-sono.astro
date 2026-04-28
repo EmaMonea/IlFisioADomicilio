@@ -1,4 +1,7 @@
 ---
+import { Schema } from 'astro-seo-schema'
+import { schemas, breadcrumb } from '../data/schema.ts'
+
 import Base from '../layouts/base.astro'
 import Head from '../components/Head.astro'
 
@@ -10,10 +13,15 @@ import Timeline from '../components/Timeline.astro'
 <!DOCTYPE html>
 <html lang="it">
 <Head
-	title="Il fisio a domicilio"
-	description="prova"
-	page="index"
-	/>
+	title="Dott. Emanuele Monea - Il fisio a domicilio"
+	description="Fisioterapista laureato all'Università Humanitas di Rozzano. Iscritto all'Albo FNOFI."
+	page="index">
+		<Schema item={schemas.chiSono}></Schema>
+		<Schema item={breadcrumb([
+            { name: "Home", url: "https://www.ilfisioadomicilio.it" },
+            { name: "Chi sono", url: "https://www.ilfisioadomicilio.it/chi-sono" }
+        ])} />
+</Head>
 <Base
 	active="index">
     <AboutHero />

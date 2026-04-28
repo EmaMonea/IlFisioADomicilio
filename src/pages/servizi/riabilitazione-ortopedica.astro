@@ -1,4 +1,7 @@
 ---
+import { Schema } from 'astro-seo-schema'
+import { breadcrumb, schemas } from '../../data/schema.ts'
+
 import Base from '../../layouts/base.astro'
 import Head from '../../components/Head.astro'
 
@@ -14,8 +17,13 @@ import ArticleSection from '../../components/ArticleSection.astro'
 <Head
 	title="Il fisio a domicilio"
 	description="prova"
-	page="index"
-	/>
+	page="index">
+        <Schema item={schemas.servizi.ortopedica}></Schema>
+		<Schema item={breadcrumb([
+            { name: "Home", url: "https://www.ilfisioadomicilio.it" },
+            { name: "Riabilitazione Sportiva", url: "https://www.ilfisioadomicilio.it/servizi/riabilitazione-sportiva" }
+        ])} />
+</Head>
 <Base
 	active="Riabilitazione ortopedica">
     <Hero 
