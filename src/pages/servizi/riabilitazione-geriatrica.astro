@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/base.astro'
+import Head from '../../components/Head.astro'
+
+import ContactForm from '../../components/ContactForm.astro'
+import Hero from '../../components/Hero.astro'
+import Process from '../../components/Process.astro'
+import ArticleSection from '../../components/ArticleSection.astro'
+
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="Riabilitazione geriatrica">
+    <Hero 
+        index={false}
+        title="Riabilitazione geriatrica"
+        subtitle=" L'anziano è un paziente spesso più fragile della popolazione generale.
+                    Spesso la riabilitazione geriatrica si concentra sul recupero dell'autonomia nelle attività di vita quotidiana."
+        breadcrumb='Riabilitazione geriatrica'
+    />
+    <section class="">
+        <article class="article">
+            <ArticleSection title="La situazione">
+                <p class="text">
+                    L'anziano è un paziente spesso più fragile della popolazione generale.<br>
+                    Traumi, l'insorgenza di patologie sistemiche, artrosi e in generale il normale decadimento delle capacità motorie
+                    possono metterlo in difficoltà. 
+                </p>
+                <p class="text">
+                    In questi casi la fisioterapia si concentra su due obiettivi: recuperare ciò che si è perso e mantenere ciò che si ha. 
+                    Prevenzione delle cadute, recupero della deambulazione, gestione delle attività quotidiane: alzarsi, camminare, vestirsi, curare la propria igiene. 
+                </p>
+                <p class="text"> 
+                    
+                </p>
+            </ArticleSection>             
+            <ArticleSection title="Il percorso">
+                <p class="text">
+                    Le situazioni in ambito geriatrico sono molto diverse tra loro. Pertanto, il tipo di intervento dovrà dipendere dalla problematica.
+                    Tra le cause più comuni di intervento si possono trovare:
+                </p>
+                <ul >
+                    <li>Decadimento motorio dato dall'età</li>
+                    <li>Traumi (più spesso frattura dell'anca e del bacino)</li>
+                    <li>Problematiche cardio-respiratorie o neurologiche</li>
+                </ul>
+                <p class="text">
+                    Nel caso delle problematiche muscolo-scheletriche il trattamento è molto variabile: alcune problematiche richiedono più esercizio fisico, 
+                    altre problematiche più terapia manuale.
+                </p>
+                <p class="text">Altre problematiche richiedono per la maggior parte un cambio di abitudini.
+                Per questi motivi sia la lunghezza del percorso stesso che il tipo di intervento sono molto variabili. 
+                </p>
+                <Process 
+                    steps={[
+                        { title: 'Valutazione iniziale', text: 'Raccolgo la storia del paziente e prendo visione della documentazione disponibile. Eseguo una valutazione obiettiva iniziale, valuto le autonomie del paziente e la sua gestione nella vita quotidiana. ' },
+                        { title: 'Trattamento', text: 'Si concentra il trattamento su ciò che serve al paziente, in base alla sua valutazione iniziale. La rieducazione alla deambulazione, il miglioramento dell\'equilibrio, aumento della resistenza allo sforzo, recupero dell\'autonomia nei gesti quotidiani.' },
+                        { title: 'Mantenimento', text: 'Il percorso si chiude quando si raggiungono gli obiettivi prefissati o si incontrano limiti non superabili. Si mantiene la condizione raggiunta con esercizi terapeutico effettuato in autonomia.' },
+                    ]}
+                /> 
+                </p>
+            </ArticleSection>  
+        </article>
+    </section>
+	<ContactForm/>
+	<style is:global >
+        .hero-content {
+            max-width: 760px !important;
+        }
+        .article{
+            display:flex;
+            flex-direction: column;
+            gap:var(--space-10);
+            padding:var(--space-12) 0; 
+            margin:0 auto;            
+			max-width:var(--container-md);
+        }  
+        .article {
+            color: var(--neutral-700);
+            font-size: var(--text-md);
+            line-height: 1.75;
+        }
+        .article ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .text{
+            margin-bottom:var(--space-4);
+        }
+        .text:last-of-type{
+            margin-bottom: 0px;
+        }
+        @media screen and (max-width:1200px){
+            .article {
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</Base>
+
+</html>

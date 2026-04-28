@@ -20,32 +20,36 @@ import ArticleSection from '../../components/ArticleSection.astro'
 	active="Riabilitazione ortopedica">
     <Hero 
         index={false}
-        title="Riabilitazione ortoepdica"
+        title="Riabilitazione ortopedica"
         subtitle="Lombalgia, cervicalgia e dolori articolari sono le problematiche muscolo-scheletriche più comuni. Il trattamento richiede tendenzialmente una corretta dose di 3 ingredienti: terapia manuale, esercizio riabilitativo ed educazione."
         breadcrumb='Riabilitazione post operatoria'
     />
     <section class="">
         <article class="article">
             <ArticleSection title="La situazione">
-                <p>
-                Sei stato operato e sei tornato a casa. L'ortopedico ti ha detto di iniziare la fisioterapia, ha dato dei consigli 
-                generali sulla gestione post-operatoria ma non ti ha esattamente spiegato come tornare alla “normalità”.
-                <br><br>
-                È una situazione molto comune. Ed è proprio uno dei ruoli del fisioterapista: non solo concentrarsi sul recupero ma 
-                anche educarti su come arrivarci accompagnandoti nel percorso passo passo.
+                <p class="text">
+                    Lombalgia e cervicalgia, seguiti da altri dolori articolari, sono le problematiche più comuni in fisioterapia.
+                    Nella maggior parte dei casi non richiedono interventi chirurgici o percorsi complessi: richiedono 
+                    una valutazione accurata e un trattamento mirato.
                 </p>
-            </ArticleSection>
+                <p class="text"> 
+                    È una situazione molto comune che richiede una valutazione iniziale che permette di capire la natura del problema
+                    e definire un piano di trattamento adeguato.
+                </p>
+            </ArticleSection>             
             <ArticleSection title="Il percorso">
-                <p>
-                Il percorso segue i tempi biologici della guarigione. 
-                Non è uguale per tutti e dipende molto dal tipo dall’operazione, dall’articolazione operata e dall’età del paziente. <br>
-                <br>Nonostante ciò, la riabilitazione post-chirurgica ha spesso principi comuni e segue un percorso strutturato.
+                <p class="text">
+                Nel caso delle problematiche muscolo-scheletriche il trattamento è molto variabile: alcune problematiche richiedono più esercizio fisico, 
+                altre problematiche più terapia manuale.
+                </p>
+                <p class="text">Altre problematiche richiedono per la maggior parte un cambio di abitudini.
+                Per questi motivi sia la lunghezza del percorso stesso che il tipo di intervento sono molto variabili. 
+                </p>
                 <Process 
                     steps={[
-                        { title: 'Valutazione iniziale', text: 'Durante la prima valutazione prendo visione della documentazione disponibile. Durante l\'esame obiettivo esamino lo stato della ferita, il range di movimento, il livello di dolore, la capacità di reclutare la muscolatura e attuale forza muscolare. Da qui imposto il piano terapeutico.' },
-                        { title: 'Fase iniziale', text: 'Nelle prime settimane lavoriamo per recuperare il completo arco del movimento dell\'articolazione, ridurre il dolore e recuperare la forza. Le sedute in questa fase sono spesso più frequenti.' },
-                        { title: 'Fase intermedia', text: 'Durante questa fase si sposta il lavoro maggiormente sull\'esercizio terapeutico. Il dolore è diminuito e ciò permette una fisioterapia più attiva. Recupero dei corretti schemi del movimento, della forza e gestione dei compensi.' },
-                        { title: 'Conclusione del percorso', text: 'Consolidamento dei risultati ottenuti. Il percorso si chiude quando abbiamo raggiunto gli obiettivi prefissati. In ultima seduta ti lascio una routine di esercizi per il mantenimento dei risultati sul lungo termine.' },
+                        { title: 'Valutazione iniziale', text: 'Raccolgo la storia del problema, prendo visione della documentazione disponibile, eseguo una valutazione obiettiva iniziale e somministro test specifici per individuare la causa del problema.' },
+                        { title: 'Trattamento', text: 'Si lavora, in modo graduale, con esercizi e terapia manuale per ridurre il dolore e migliorare riprendere la corretta funzionalità dell\'articolazione in questione. ' },
+                        { title: 'Consolidamento dei risultati', text: 'Il percorso si conclude con una quando abbiamo raggiunto gli obiettivi prefissati. In ultima seduta ti lascio una routine di esercizi per il mantenimento dei risultati sul lungo termine.' },
                     ]}
                 /> 
                 </p>
@@ -69,6 +73,12 @@ import ArticleSection from '../../components/ArticleSection.astro'
             color: var(--neutral-700);
             font-size: var(--text-md);
             line-height: 1.75;
+        }
+        .text{
+            margin-bottom:var(--space-4);
+        }
+        .text:last-of-type{
+            margin-bottom: 0px;
         }
         @media screen and (max-width:1200px){
             .article p{

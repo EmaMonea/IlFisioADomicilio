@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/base.astro'
+import Head from '../../components/Head.astro'
+
+import ContactForm from '../../components/ContactForm.astro'
+import Hero from '../../components/Hero.astro'
+import Process from '../../components/Process.astro'
+import ArticleSection from '../../components/ArticleSection.astro'
+
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="Riabilitazione neurologica">
+    <Hero 
+        index={false}
+        title="Riabilitazione neurologica"
+        subtitle=" La riabilitazione neurologica si occupa del recupero motorio e funzionale in pazienti con patologie del sistema nervoso centrale e periferico."
+        breadcrumb='Riabilitazione geriatrica'
+    />
+    <section class="">
+        <article class="article">
+            <ArticleSection title="La situazione">
+                <p class="text">
+                    La fisioterapia neurologica interviene in situazioni molto diverse tra loro: dall'esito di un ictus, 
+                    alle patologie neurodegenerative come il Parkinson e la sclerosi multipla, fino alle neuropatie periferiche.
+                </p>
+                <p class="text">
+                    In tutti questi casi il sistema nervoso ha subito un danno che compromette il movimento, l'equilibrio, la coordinazione o la sensibilità.
+                    Il lavoro del fisioterapista è sfruttare la capacità del sistema nervoso di riorganizzarsi — la neuroplasticità — per recuperare il maggior 
+                    grado di funzione possibile.
+                </p>
+                <p class="text"> 
+                    Il domicilio è un ambiente particolarmente adatto per questo tipo di riabilitazione: il paziente lavora nel contesto in cui vive, con gli spazi e gli oggetti della sua quotidianità.
+                </p>
+            </ArticleSection>             
+            <ArticleSection title="Il percorso">
+                <p class="text">
+                    Le patologie neurologiche hanno caratteristiche molto diverse tra loro. Un ictus ha una fase acuta e un percorso di recupero con tempistiche definite. 
+                    Una patologia degenerativa come il Parkinson richiede un lavoro continuativo nel tempo. Per questo motivo la struttura e la durata del percorso vengono definite dopo la valutazione iniziale.
+                <Process 
+                    steps={[
+                        { title: 'Valutazione iniziale', text: ' Raccolgo la storia clinica e la documentazione disponibile. Valuto le capacità motorie, l\'equilibrio, la coordinazione, la sensibilità e il livello di autonomia nelle attività quotidiane. Se necessario, mi confronto con il neurologo.' },
+                        { title: 'Trattamento', text: 'Il lavoro si concentra sul recupero del reclutamento della muscolatura, sul recupero degli schemi motori, sul miglioramento dell\'equilibrio e della coordinazione, sulla rieducazione alla deambulazione. Nei pazienti con patologie degenerative si lavora sul mantenimento delle capacità e sull\'adattamento progressivo alle limitazioni.' },
+                        { title: 'Mantenimento', text: ' Nelle patologie degenerative il percorso non ha una conclusione netta. Si definiscono cicli di trattamento con obiettivi specifici, intervallati da periodi di esercizio autonomo. L\'obiettivo è mantenere il livello di autonomia più alto possibile nel tempo.' },
+                    ]}
+                /> 
+                </p>
+            </ArticleSection>  
+        </article>
+    </section>
+	<ContactForm/>
+	<style is:global >
+        .hero-content {
+            max-width: 760px !important;
+        }
+        .article{
+            display:flex;
+            flex-direction: column;
+            gap:var(--space-10);
+            padding:var(--space-12) 0; 
+            margin:0 auto;            
+			max-width:var(--container-md);
+        }  
+        .article {
+            color: var(--neutral-700);
+            font-size: var(--text-md);
+            line-height: 1.75;
+        }
+        .article ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .text{
+            margin-bottom:var(--space-4);
+        }
+        .text:last-of-type{
+            margin-bottom: 0px;
+        }
+        @media screen and (max-width:1200px){
+            .article {
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</Base>
+
+</html>

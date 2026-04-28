@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/base.astro'
+import Head from '../../components/Head.astro'
+
+import ContactForm from '../../components/ContactForm.astro'
+import Hero from '../../components/Hero.astro'
+import Process from '../../components/Process.astro'
+import ArticleSection from '../../components/ArticleSection.astro'
+
+
+---
+<!DOCTYPE html>
+<html lang="it">
+<Head
+	title="Il fisio a domicilio"
+	description="prova"
+	page="index"
+	/>
+<Base
+	active="Riabilitazione sportiva">
+    <Hero 
+        index={false}
+        title="Riabilitazione sportiva"
+        subtitle="Dopo un intervento chirurgico, il recupero va iniziato il prima possibile sempre nel rispetto delle indicazioni ortopediche."
+        breadcrumb='Riabilitazione post operatoria'
+    />
+    <section class="">
+        <article class="article">
+            <ArticleSection title="La situazione">
+                <p class="text">
+                L'infortunio sportivo ha una caratteristica che lo distingue dalle altre problematiche: 
+                l'obiettivo non è solo risolvere il dolore, ma tornare a fare sport con la stessa sicurezza di prima. 
+                Questo richiede un percorso che va oltre la scomparsa del sintomo. 
+                </p>
+                <p class="text"> 
+                Le problematiche più comuni in ambito sportivo riguardano strappi e lesioni muscolari, distorsioni articolari, 
+                tendinopatie e sindromi da sovraccarico. In molti casi il lavoro a domicilio copre gran parte del percorso — 
+                dalla fase acuta fino al recupero della forza e del controllo motorio.
+                </p>
+            </ArticleSection>
+            <ArticleSection title="Il percorso">
+                <p class="text">
+                Il percorso dipende dal tipo di infortunio, dalla sua gravità e dallo sport praticato. Le fasi iniziali si svolgono 
+                a domicilio; nelle fasi avanzate, quando il recupero richiede spazi e attrezzatura specifici per il ritorno allo sport, ti indirizzo verso la struttura più adatta per completare il percorso.
+                </p> 
+                <Process 
+                    steps={[
+                        { title: 'Valutazione iniziale', text: 'Raccolgo la storia dell\'infortunio, il meccanismo che l\'ha causato e gli esami disponibili. Valuto mobilità, forza, stabilità e qualità del movimento per definire il piano di lavoro e le tempistiche.' },
+                        { title: 'Fase acuta', text: 'Nelle prime settimane si lavora sulla riduzione del dolore e del gonfiore, sul recupero dell\'arco di movimento e sulla riattivazione muscolare. Terapia manuale e esercizio dosato.' },
+                        { title: 'Rinforzo e controllo motorio', text: 'Si ricostruisce la forza, la propriocezione e la coordinazione. Gli esercizi diventano progressivamente più impegnativi e specifici per lo sport praticato.' },
+                        { title: 'Ritorno allo sport', text: 'Quando il recupero richiede lavoro sul campo, corsa, cambi di direzione o gesti tecnici specifici, il percorso prosegue in una struttura attrezzata. Ti indirizzo verso il professionista più adatto e, se necessario, ci coordiniamo per garantire continuità.' },
+                    ]}
+                /> 
+                </p>
+            </ArticleSection>  
+        </article>
+    </section>
+	<ContactForm/>
+	<style is:global >
+        .hero-content {
+            max-width: 760px !important;
+        }
+        .article{
+            display:flex;
+            flex-direction: column;
+            gap:var(--space-10);
+            padding:var(--space-12) 0; 
+            margin:0 auto;            
+			max-width:var(--container-md);
+        }  
+        .article p {
+            color: var(--neutral-700);
+            font-size: var(--text-md);
+            line-height: 1.75;
+        }
+        .text{
+            margin-bottom:var(--space-4);
+        }
+        .text:last-of-type{
+            margin-bottom: 0px;
+        }
+        @media screen and (max-width:1200px){
+            .article p{
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</Base>
+
+</html>
