@@ -11,20 +11,20 @@
 
       <ul class="contact-channels" role="list">
         <li>
-          <a class="channel" href="tel:+393331234567">
+          <a class="channel" href="tel:+393395721209">
             <span class="channel-label">Telefono</span>
             <span class="channel-value">339 572 1209</span>
             <span class="channel-note">Lun–Ven 9–18</span>
           </a>
         </li>
         <li>
-          <a class="channel" href="https://wa.me/393331234567?text=Ciao%2C%20vorrei%20informazioni%20sulla%20fisioterapia%20a%20domicilio" target="_blank" rel="noopener">
+          <a class="channel" href="https://wa.me/393395721209?text=Ciao%2C%20vorrei%20informazioni%20sulla%20fisioterapia%20a%20domicilio" target="_blank" rel="noopener">
             <span class="channel-label">WhatsApp</span>
             <span class="channel-value">Scrivimi un messaggio</span> 
           </a>
         </li>
         <li>
-          <a class="channel" href="mailto:info@ilfisioadomicilio.it">
+          <a class="channel" href="mailto:info@emanuelemonea.it">
             <span class="channel-label">Email</span>
             <span class="channel-value">info@emanuelemonea.it</span> 
           </a>
@@ -32,28 +32,38 @@
       </ul>
     </div>
 
-    <form class="contact-form" action="#" method="POST" novalidate>
-      <h3 class="form-title">Lasciami un messaggio</h3>
-      <p class="form-subtitle">Ti richiamo in giornata.</p>
+    <form class="contact-form" id="contact-form">
 
-      <div class="field">
-        <label for="name">Nome e cognome</label>
-        <input type="text" id="name" name="name" autocomplete="name" required placeholder="Mario Rossi">
-      </div>
+  <!-- Honeypot -->
+  <input type="checkbox" name="I_Accept_The_Terms_And_Conditions" value="yes" tabindex="-1" autocomplete="off" class="hp">
 
-      <div class="field">
-        <label for="phone">Telefono</label>
-        <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="+39 333 1234567">
-      </div> 
-      <div class="field">
-        <label for="message">Descrivi brevemente la situazione</label>
-        <textarea id="message" name="message" rows="4" placeholder="Es. dolore alla spalla dopo intervento, mia madre ha difficoltà a camminare..."></textarea>
-      </div>
+  <h3 class="form-title">Lasciami un messaggio</h3>
+  <p class="form-subtitle">Ti richiamo in giornata.</p>
 
-      <button type="submit" class="form-submit">Invia richiesta</button>
+  <!-- Formspark: redirect disabilitato, risposta JSON -->
+  <input type="hidden" name="_redirect" value="false">
 
-      <p class="form-privacy">I dati che lasci servono solo a ricontattarti. Nessun altro utilizzo. <a href="/privacy">Privacy policy</a></p>
-    </form>
+  <div class="field">
+    <label for="name">Nome e cognome</label>
+    <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="100" placeholder="Mario Rossi">
+  </div>
+
+  <div class="field">
+    <label for="phone">Telefono</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" required minlength="6" maxlength="20" pattern="[\d\s\+\-()]+" placeholder="333 1234567">
+  </div>
+
+  <div class="field">
+    <label for="message">Descrivi brevemente la situazione</label>
+    <textarea id="message" name="message" rows="4" maxlength="500" placeholder="Es. dolore alla spalla dopo intervento, mia madre ha difficoltà a camminare..."></textarea>
+  </div>
+
+  <div class="submit-container">
+    <button type="submit" class="form-submit" id="form-submit">Invia richiesta</button>
+    <p class="form-status" id="form-status" aria-live="polite"></p>
+  </div>
+  <p class="form-privacy">I dati che lasci servono solo a ricontattarti. Nessun altro utilizzo. <a href="/privacy">Privacy policy</a></p>
+</form>
 
   </div>
 </section>
@@ -232,13 +242,17 @@
     border-color: var(--primary-500);
     box-shadow: 0 0 0 3px var(--primary-100);
   }
+  .submit-container{
+    padding:0;
+    height: 52px;
+    overflow: hidden;
+  }
 
   /* ── Submit ── */
   .form-submit {
     width: 100%;
-    margin-top: 8px;
-    padding: 16px;
-    min-height: 52px;
+    padding: 8px;
+    min-height: 50px;
     border: none;
     border-radius: 12px;
     background: var(--primary-700);
@@ -258,7 +272,40 @@
     outline: 2px solid var(--primary-500);
     outline-offset: 4px;
   }
+  /*  Status */ 
+   .hp {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
 
+  .field-error {
+    font-size: 1rem;
+    color: var(--error-600);
+    margin-top: var(--space-1);
+    min-height: 0;
+  }
+
+  .form-status {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: var(--space-4);
+    min-height: 0;
+  }
+
+  .form-status.success { color: var(--success-600); }
+  .form-status.error { color: var(--error-600); }
+
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .sent{
+    display:none;
+  }
   /* ── Privacy ── */
   .form-privacy {
     font-size: 1rem;
@@ -353,4 +400,80 @@
   );
 
   document.querySelectorAll('.contact-info, .contact-form').forEach(el => observer.observe(el));
+</script>
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('form-submit') as HTMLButtonElement;
+  const status = document.getElementById('form-status') as HTMLElement;
+  const phoneInput = document.getElementById('phone') as HTMLInputElement;
+  const phoneError = document.getElementById('phone-error') as HTMLElement;
+
+  // Sanitize: rimuove tag HTML
+  function clean(str: string): string {
+    return str.replace(/<[^>]*>/g, '').trim();
+  }
+
+  // Validazione telefono
+  
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const hp = form.querySelector<HTMLInputElement>('input[name="I_Accept_The_Terms_And_Conditions"]');
+    if (hp?.checked) return;
+
+    // Validazione
+    const name = clean((form.querySelector('#name') as HTMLInputElement).value);
+    const phone = clean(phoneInput.value);
+    const message = clean((form.querySelector('#message') as HTMLTextAreaElement).value);
+    const digits = phone.replace(/\D/g, '');
+
+    if (name.length < 2) {
+      status.textContent = 'Inserisci il tuo nome.';
+      status.className = 'form-status error';
+      return;
+    }
+
+    if (digits.length < 6) {
+      phoneError.textContent = 'Inserisci un numero di telefono valido.';
+      return;
+    }
+
+    // UI: loading
+    submitBtn.textContent = 'Invio in corso...';
+    submitBtn.disabled = true;
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('https://submit-form.com/VrSSCjcHx', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          message,
+          _redirect: false,
+        }),
+      });
+
+      if (res.ok) {
+        status.textContent = 'Richiesta inviata. Ti richiamo in giornata.';
+        status.className = 'form-status success';
+        submitBtn.classList.add('sent');
+        form.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      status.textContent = 'Errore nell\'invio. Prova a chiamarmi direttamente.';
+      status.className = 'form-status error';
+      submitBtn.textContent = 'Invia richiesta';
+      submitBtn.disabled = false;
+    }
+  });
 </script>
