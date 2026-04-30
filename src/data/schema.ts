@@ -106,7 +106,7 @@ export const schemas = {
   homepage: {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "name": "Il Fisio a Domicilio — Dott. Marco Rossi",
+    "name": "Il Fisio a Domicilio — Dott. Emanuele Monea",
     "url": SITE,
     "logo": `${SITE}images/logo.png`,
     "image": `${SITE}images/chi-sono.jpg`,

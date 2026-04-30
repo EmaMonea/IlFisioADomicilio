@@ -6,7 +6,7 @@ interface Props {
     description: string;
     page: string;
 }
-const {title, description } = Astro.props;
+const {title, description, page } = Astro.props;
 ---
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@ const {title, description } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="stylesheet" href="/styles/global.css"/>    
-    <link rel="canonical" href="http://ilfisioadomicilio.it/" />
+    <link rel="canonical" href=`http://ilfisioadomicilio.it/${page}` />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <slot></slot>
