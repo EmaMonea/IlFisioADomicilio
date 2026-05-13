@@ -10,8 +10,6 @@ const {title, description, page } = Astro.props;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://submit-form.com https://cdn.iubenda.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://submit-form.com https://*.iubenda.com https://*.matomo.cloud; frame-src https://www.iubenda.com; font-src 'self';">
-    
-    
 
     <title>{title}</title>
     <meta name="description" content={description}>
@@ -28,5 +26,5 @@ const {title, description, page } = Astro.props;
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <slot></slot>
-
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/2b0427ed-ec47-411f-973d-359b347e255d.js"></script>
 </head>
