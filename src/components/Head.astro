@@ -1,6 +1,4 @@
 ---
-import { Schema } from 'astro-seo-schema'; 
-
 interface Props {
     title: string;
     description: string;
@@ -11,8 +9,7 @@ const {title, description, page } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-    <base href="https://ilfisioadomicilio.it">-->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 
     <title>{title}</title>
     <meta name="description" content={description}>
@@ -25,7 +22,7 @@ const {title, description, page } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="stylesheet" href="/styles/global.css"/>    
-    <link rel="canonical" href=`http://ilfisioadomicilio.it/${page}` />
+    <link rel="canonical" href=`https://ilfisioadomicilio.it/${page}` />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <slot></slot>
