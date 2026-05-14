@@ -9,7 +9,6 @@ const {title, description, page } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://submit-form.com https://cdn.iubenda.com https://embeds.iubenda.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://submit-form.com https://*.iubenda.com https://*.matomo.cloud; frame-src https://www.iubenda.com; font-src 'self';">
     
     <title>{title}</title>
     <meta name="description" content={description}>
@@ -22,7 +21,7 @@ const {title, description, page } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="stylesheet" href="/styles/global.css"/>    
-    <link rel="canonical" href=`https://ilfisioadomicilio.it/${page}` />
+    <link rel="canonical" href=`https://ilfisioadomicilio.it${Astro.url.pathname}` />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <slot></slot>
