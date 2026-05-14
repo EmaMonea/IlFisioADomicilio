@@ -126,7 +126,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Riabilitazione post-operatoria",
-                "url": `${SITE}/riabilitazione-post-operatoria`
+                "url": `${SITE}/fisioterapia-post-operatoria`
             }
         },
         {
@@ -134,7 +134,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Fisioterapia ortopedica",
-                "url": `${SITE}/riabilitazione-ortopedica`
+                "url": `${SITE}/fisioterapia-ortopedica`
             }
         },
         {
@@ -142,7 +142,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Fisioterapia geriatrica",
-                "url": `${SITE}/riabilitazione-geriatrica`
+                "url": `${SITE}/fisioterapia-geriatrica`
             }
         },
         {
@@ -150,7 +150,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Fisioterapia sportiva",
-                "url": `${SITE}/riabilitazione-sportiva`
+                "url": `${SITE}/fisioterapia-sportiva`
             }
         },
         {
@@ -158,7 +158,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Fisioterapia neurologica",
-                "url": `${SITE}/riabilitazione-neurologica`
+                "url": `${SITE}/fisioterapia-neurologica`
             }
         },
         {
@@ -166,7 +166,7 @@ export const schemas = {
             "itemOffered": {
                 "@type": "Service",
                 "name": "Riabilitazione cardiologica",
-                "url": `${SITE}/riabilitazione-cardiologica`
+                "url": `${SITE}/fisioterapia-cardiologica`
             }
         }
         ]
@@ -302,7 +302,7 @@ export const schemas = {
     postOperatoria: service(
       "Riabilitazione post-operatoria a domicilio",
       "Riabilitazione a domicilio dopo intervento chirurgico. Protesi d'anca, ginocchio, artroscopia, ricostruzione legamenti. Il percorso inizia nei primi giorni dopo la dimissione.",
-      "riabilitazione-post-operatoria",
+      "fisioterapia-post-operatoria",
       "Riabilitazione post-chirurgica",
       [
         "Riabilitazione protesi d'anca",
@@ -371,7 +371,7 @@ export const schemas = {
     cardiologica: service(
       "Riabilitazione cardiologica a domicilio",
       "Riabilitazione cardiologica a domicilio dopo evento cardiaco o intervento. Programma di esercizio aerobico e rinforzo muscolare dosati e monitorati.",
-      "riabilitazione-cardiologica",
+      "fisioterapia-cardiologica",
       "Riabilitazione cardiologica",
       [
         "Riabilitazione post-infarto",
